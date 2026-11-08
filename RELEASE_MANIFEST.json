@@ -1,0 +1,861 @@
+{
+  "status": "local publication candidate, not a published release",
+  "source": "project-owned allowlisted source and documentation",
+  "excludes": [
+    "actual .env files",
+    "weights and pretrained caches",
+    "private datasets and images (approved examples and UI screenshots excepted)",
+    "uploads, exports and logs",
+    "node_modules and Python environments",
+    "dist and runtime process files",
+    "historical planning and task-allocation documents"
+  ],
+  "manifestSelfHashExcluded": true,
+  "files": [
+    {
+      "path": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "bytes": 2598,
+      "sha256": "e152dbbec769baa669ca921c8d1cb684689bb84fbad212e4cd314523ab184208"
+    },
+    {
+      "path": ".gitignore",
+      "bytes": 402,
+      "sha256": "f6887fcb7a899622cb2ea8d1c15c86e8d5db2cda63ce247754bc227edbfc3d25"
+    },
+    {
+      "path": "LICENSE",
+      "bytes": 1119,
+      "sha256": "cd2bcab87b2accce233d807d5eae5b3d548bec8074258a9b5f2a1381b1406983"
+    },
+    {
+      "path": "README.md",
+      "bytes": 13327,
+      "sha256": "b37cbc2cd94087a67fceb8de8cab4be65688374b0f2964ea40ad224212b4b10a"
+    },
+    {
+      "path": "THIRD_PARTY_NOTICES.md",
+      "bytes": 3781,
+      "sha256": "3b3402755580ede3a3a4a22a47600072254f12280f426c46f3b4316e2a34bd65"
+    },
+    {
+      "path": "database/README.md",
+      "bytes": 650,
+      "sha256": "6b85daf0e329a02c2b3ae8c1c14092eddfde24e0ac415906fad041958a3282ea"
+    },
+    {
+      "path": "database/schema.sql",
+      "bytes": 6031,
+      "sha256": "59178e737a43224663c93ab365b6a82c326408365893622f2b6033459911864c"
+    },
+    {
+      "path": "datasets/.gitkeep",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/ACCEPTANCE_REPORT.md",
+      "bytes": 1398,
+      "sha256": "8543e536f41f26c89885c77385ff2388633380e23023efd9ee4c5bf222cc8382"
+    },
+    {
+      "path": "docs/API_CONTRACT.md",
+      "bytes": 7368,
+      "sha256": "38f3b5f5dc49b83db5f8fa07b3798cf8b8ccc885af6acbfdab300bd04d89e94d"
+    },
+    {
+      "path": "docs/ARCHITECTURE.md",
+      "bytes": 3146,
+      "sha256": "ea8c5774a4a01020bcafe4d72b4831c5b47945a0d262790988806b4a6d568581"
+    },
+    {
+      "path": "docs/CI.md",
+      "bytes": 3112,
+      "sha256": "35a6ab18afcaf47cfa11ed431f1200f8804cb42003a1796987a365aa176fcb07"
+    },
+    {
+      "path": "docs/CLINICAL_REVIEW.md",
+      "bytes": 2187,
+      "sha256": "94202410128d4557173e340bbc4ccbaf873f1de1b2f7c371292715dd4ef75458"
+    },
+    {
+      "path": "docs/FEATURE_WALKTHROUGH.md",
+      "bytes": 2362,
+      "sha256": "4c20c360881c27b4663e2f1d5e608bba2955c52c25a0f687d9628c3e7f7b4290"
+    },
+    {
+      "path": "docs/INPUT_VALIDATION.md",
+      "bytes": 1963,
+      "sha256": "2fae8c1960f7652111da8cf203d1f8084b2043d0dc5f28edc939f32938530506"
+    },
+    {
+      "path": "docs/INSTALL_VERIFICATION.md",
+      "bytes": 1510,
+      "sha256": "4dadcacec0a273019027c518f76fed19c8f7b811e12d1ca587ba25e391086066"
+    },
+    {
+      "path": "docs/INSTALL_WINDOWS.md",
+      "bytes": 3075,
+      "sha256": "98c8f04156f9cf6b0d1ff39480df29ff98b78705c29dd12aece168545dba21df"
+    },
+    {
+      "path": "docs/LICENSE_SCOPE.md",
+      "bytes": 1276,
+      "sha256": "e22cc9119ba049023ecf78d85a992f7b40a2ee6813fcc6563b6dee090b0133fe"
+    },
+    {
+      "path": "docs/LICENSING_STATUS.md",
+      "bytes": 2292,
+      "sha256": "71f3340ee98ae2756fe13c48a9304a9bcd525322736a9a84b23a0b76f5b5e29c"
+    },
+    {
+      "path": "docs/LLM_SETUP.md",
+      "bytes": 1637,
+      "sha256": "dfa18e5942d1b49f26feafa6da8649170f055256760bb8cad57ffb18e9ffe449"
+    },
+    {
+      "path": "docs/MODEL_CARD.md",
+      "bytes": 3163,
+      "sha256": "d26167c1a2b27bedf05c475ebc174750459448d2c7043b5d2b29505f83b929a7"
+    },
+    {
+      "path": "docs/OPEN_SOURCE_READINESS.md",
+      "bytes": 1806,
+      "sha256": "69094f069dfd1cc1ad4b3013101a2ff18366b8564e2f9b6110a325d22cfe1524"
+    },
+    {
+      "path": "docs/PUBLICATION_CHECKLIST.md",
+      "bytes": 2108,
+      "sha256": "7c71405e281c57ad7acad38474710378c9d30df90fd00edecf0e23a33bb71d90"
+    },
+    {
+      "path": "docs/README.md",
+      "bytes": 1194,
+      "sha256": "72f77091ea397a950b7d36086c0ce58a7b8c85cd3b85883ce271a4782caec11a"
+    },
+    {
+      "path": "docs/RELEASE_FILES.json",
+      "bytes": 2903,
+      "sha256": "f3444e00cc7e4029cb7bb6f9f635a4b495f7308e15bdc56b30f253efb9ac8ff6"
+    },
+    {
+      "path": "docs/VERSION_MAINTENANCE.md",
+      "bytes": 479,
+      "sha256": "69ad44b3da3dcbf16399c26c598e3c0ddab8dc74359eef4b3d5c87b845862489"
+    },
+    {
+      "path": "docs/dependency-licenses.json",
+      "bytes": 57678,
+      "sha256": "8d67eb6d5e5e1c063482f0cdda9be1bc4ffa1a9bdfca0b768702903eb4889ba9"
+    },
+    {
+      "path": "docs/images/analysis-result.png",
+      "bytes": 856618,
+      "sha256": "9b03d1f39d3b0ae545a69ac99e5f4aaec6725c34e2e48bb618c53f750b2ba3b9"
+    },
+    {
+      "path": "docs/images/assistant.png",
+      "bytes": 523854,
+      "sha256": "d8d4f34327159d78af9154531627a932ff3db91a3bb44f4bcc176e7cd1d5d938"
+    },
+    {
+      "path": "docs/images/dashboard.png",
+      "bytes": 699839,
+      "sha256": "af8662c882701cedd0fb2ff6158dca0dbe48f1e709a605acb4036c4ab8a71f5a"
+    },
+    {
+      "path": "docs/images/image-controls.png",
+      "bytes": 489168,
+      "sha256": "bff25efcb973f08350bf408d5165b80080bde3b7dcff00f2ec3e8736cf8d3dae"
+    },
+    {
+      "path": "docs/images/review-draft.png",
+      "bytes": 554020,
+      "sha256": "daec4c80c2808d234a257bf279a593a959102676099bd646f98e8082d9bbb0ce"
+    },
+    {
+      "path": "examples/chest-xrays/README.md",
+      "bytes": 1693,
+      "sha256": "cb5a8e40ebfac2f15786d209ad4f048178d6c5bb2ec8ace5cbfddba5d5177eaf"
+    },
+    {
+      "path": "examples/chest-xrays/SOURCES.json",
+      "bytes": 1391,
+      "sha256": "6d4f9c312960614d7a497b08be05bb26d782d62a5fb914318177bca288703bb9"
+    },
+    {
+      "path": "examples/chest-xrays/chest-pa-01.jpg",
+      "bytes": 906335,
+      "sha256": "4cbbcf805291db949e4ff085ca3c7258b2823de21b2857ae684e6c91ff9a38a4"
+    },
+    {
+      "path": "examples/chest-xrays/chest-pa-02.png",
+      "bytes": 4198015,
+      "sha256": "a43431b089a6dfab031c10eceef6c821e4f326913bf9015f73f4a1f0446d2be1"
+    },
+    {
+      "path": "frontend/index.html",
+      "bytes": 483,
+      "sha256": "8df4081b85e78ea565b34b189ef45d5d0800d7e92594cafcbf3083f4d3bb3ea6"
+    },
+    {
+      "path": "frontend/package-lock.json",
+      "bytes": 56907,
+      "sha256": "12dea5393228077b2eae3559bf0d7b7d426bed9c5be2b7d9834261a07abfbef4"
+    },
+    {
+      "path": "frontend/package.json",
+      "bytes": 591,
+      "sha256": "23fa4a357269838f00ab54ffda64b667268f9f600041f01aaca2e8ad7ed6fdb4"
+    },
+    {
+      "path": "frontend/src/App.vue",
+      "bytes": 70,
+      "sha256": "d30ea898848c193847f97e825ca8146a8885299c1f790baf0bae7152b3e052f2"
+    },
+    {
+      "path": "frontend/src/api/assistant.ts",
+      "bytes": 3818,
+      "sha256": "c50ad7e19674ed8993f221dfe84763436c757c6a14869b311a155a2d24e82039"
+    },
+    {
+      "path": "frontend/src/api/auth.ts",
+      "bytes": 1273,
+      "sha256": "237015a37aa47b8dde7106ba89cd51946ff6107b2bc78c39f0ba781003b16b39"
+    },
+    {
+      "path": "frontend/src/api/dashboard.ts",
+      "bytes": 1148,
+      "sha256": "d74ac4980829464940bbb2cbd02eb261e82553c560d281e74da2efd6ad9b1a73"
+    },
+    {
+      "path": "frontend/src/api/health.ts",
+      "bytes": 594,
+      "sha256": "4a5b4349a32d7e2ea7d2709c4bc620a373fc4e2cb3923f373053d995cc993141"
+    },
+    {
+      "path": "frontend/src/api/http.ts",
+      "bytes": 832,
+      "sha256": "00d4cd2e79edc913458bded8e817ad2292020ab742fc206999bacbe343fe8f59"
+    },
+    {
+      "path": "frontend/src/api/studies.ts",
+      "bytes": 3858,
+      "sha256": "6c8cbaccde7a609d6a5342047a2e35e75f797222ae7fc008e6a3dc65a3b7b2bd"
+    },
+    {
+      "path": "frontend/src/api/tasks.ts",
+      "bytes": 2942,
+      "sha256": "cb28a57499dcb460024134d4c222dfbcf2501e591409f0ae7545af60adf2ae57"
+    },
+    {
+      "path": "frontend/src/components/ImageUploader.vue",
+      "bytes": 9648,
+      "sha256": "4776319fda72a91a279784714377a9ce32dc04c2ba0c74f4e914256b16320fcc"
+    },
+    {
+      "path": "frontend/src/components/PagePlaceholder.vue",
+      "bytes": 673,
+      "sha256": "5c5282b6140f5d4f3fcffe534f1df02fb32af84e7b653ca7c36e812412f23ce1"
+    },
+    {
+      "path": "frontend/src/composables/useImageViewport.ts",
+      "bytes": 2795,
+      "sha256": "c4830e035589b1d5dc572151918159fc8745ffbf6fecb902d31921b1a8ca8b8c"
+    },
+    {
+      "path": "frontend/src/config/navigation.ts",
+      "bytes": 563,
+      "sha256": "ff347516538c654549abf0500b1b2487cdcaf3e31b0da48e4c87765f2beb7ea6"
+    },
+    {
+      "path": "frontend/src/env.d.ts",
+      "bytes": 23,
+      "sha256": "2700d3b4bfd637e28720a590b9afc6488433e219aad14e4c3ae5c90462083aba"
+    },
+    {
+      "path": "frontend/src/layouts/AppLayout.vue",
+      "bytes": 4069,
+      "sha256": "74a550f94aa0ef69a5824c0320830fdc7ef928ed8bf9fc26834cc7b033bed3f2"
+    },
+    {
+      "path": "frontend/src/main.ts",
+      "bytes": 213,
+      "sha256": "b6667961c565e007b640f729e1af61d7e7c1b1cb5eab545d1b60084a1cdd7a81"
+    },
+    {
+      "path": "frontend/src/router/index.ts",
+      "bytes": 3973,
+      "sha256": "d4ca31ef93246022521f0014b10472cc2804693e14303e8c72968058250db0d3"
+    },
+    {
+      "path": "frontend/src/state/auth.ts",
+      "bytes": 1622,
+      "sha256": "204473085349a0dc8077e96fbf87ffa6706f4931683db646b55f3e51ed68479e"
+    },
+    {
+      "path": "frontend/src/state/currentStudy.ts",
+      "bytes": 795,
+      "sha256": "6b89191707fe4cc8b2c26b6f228c34cdbe1e144ec15b25965c937618c361363d"
+    },
+    {
+      "path": "frontend/src/state/pinia.ts",
+      "bytes": 73,
+      "sha256": "42d29108784637d5e2bef194da0d8c34f45903e37b0fa056b724605f2eefc8a6"
+    },
+    {
+      "path": "frontend/src/styles/main.css",
+      "bytes": 85295,
+      "sha256": "83b3d295069998e873a6306f00190c197f888dc2f41359eb66d09d84faa6a0ed"
+    },
+    {
+      "path": "frontend/src/types/assistant.ts",
+      "bytes": 2235,
+      "sha256": "40579edd237aa6370b4d0a9cb5eec713ba5152e8c3eebcc363e210efc6c5fe98"
+    },
+    {
+      "path": "frontend/src/types/auth.ts",
+      "bytes": 136,
+      "sha256": "ca39211f71a229092d21c9b5bf1ad0861a9e0a1a601b37e2eab0514de29d8814"
+    },
+    {
+      "path": "frontend/src/types/batch.ts",
+      "bytes": 866,
+      "sha256": "f5ede160bd2030f9c6b80bf8055f1ca0ea451d9ade771144600efaf4285569b8"
+    },
+    {
+      "path": "frontend/src/types/dashboard.ts",
+      "bytes": 751,
+      "sha256": "4f375373337b047dc8a7e380993bcd7cdfd87973322f229ad02d1a04bb865231"
+    },
+    {
+      "path": "frontend/src/types/health.ts",
+      "bytes": 769,
+      "sha256": "eae6611ba74a930daf4e8f488da86e8602cd0ebe74297c79904e43aeecaea49c"
+    },
+    {
+      "path": "frontend/src/types/prediction.ts",
+      "bytes": 1570,
+      "sha256": "292273cbaa573dc5e4dccccc38e354b048a2514e506588a4a68f8a6ecf80818d"
+    },
+    {
+      "path": "frontend/src/types/study.ts",
+      "bytes": 216,
+      "sha256": "f73594bcd2756a0a3d04d4e1cc865f40250dd91fc27a8db0bd90ca6887ee62be"
+    },
+    {
+      "path": "frontend/src/types/submission.ts",
+      "bytes": 570,
+      "sha256": "344d5e4b8ad7a73b21e0c5193e5ae12f04b413b98ae1965baaf123aded6f0953"
+    },
+    {
+      "path": "frontend/src/views/AboutView.vue",
+      "bytes": 13662,
+      "sha256": "cc2368e6a25a8ffba7d83abb9dba7977bac125e3768aa907ae4e6bc71751f02f"
+    },
+    {
+      "path": "frontend/src/views/AssistantView.vue",
+      "bytes": 34878,
+      "sha256": "36048300b2a8cd0987b4a12484bed1533bbb81fe27cadfbe018ace1787d61cd8"
+    },
+    {
+      "path": "frontend/src/views/BatchView.vue",
+      "bytes": 27347,
+      "sha256": "3ab69c89d6155b5db4a3d322ae4d709bde760fa3192602789ded3f1980002559"
+    },
+    {
+      "path": "frontend/src/views/DashboardView.vue",
+      "bytes": 7251,
+      "sha256": "a578dfb072f71698823b1d51f281553931721c1806fe5be5d984dd4c19d1c680"
+    },
+    {
+      "path": "frontend/src/views/LoginView.vue",
+      "bytes": 8004,
+      "sha256": "cf030b63310f3e8cdc9dc0bd405bb37c298042765d619fef1f282c0e965731e2"
+    },
+    {
+      "path": "frontend/src/views/NewStudyView.vue",
+      "bytes": 15069,
+      "sha256": "3cadf3265cba83927137ea2279d739afecb2668f607013386c54580275bc0c20"
+    },
+    {
+      "path": "frontend/src/views/NotFoundView.vue",
+      "bytes": 261,
+      "sha256": "ee5b2ffdd3a870f2eae9a059ec6e0c30781dd4232cdd5f314eeb52428567cdf1"
+    },
+    {
+      "path": "frontend/src/views/ResultView.vue",
+      "bytes": 15124,
+      "sha256": "dc17927367c7ab58a69150d3267a067c5ca6973e0b72cac73801e666fc75c544"
+    },
+    {
+      "path": "frontend/src/views/StudiesView.vue",
+      "bytes": 10851,
+      "sha256": "77d5f9dc4e543003ed18b0c0dcdac18b7c76e382aab6629f077ebc0ea8fc8284"
+    },
+    {
+      "path": "frontend/src/views/StudyDetailView.vue",
+      "bytes": 8202,
+      "sha256": "4ce2d593df5aa640521d5c26bf571606e7390a76c089b8dbff6ba548301d9c42"
+    },
+    {
+      "path": "frontend/src/views/SubmissionView.vue",
+      "bytes": 14083,
+      "sha256": "9aa9abf4bfbe6e9b54fa28d3bf97f7fe9ec78b6fef655ff6b8ffee750fb91a14"
+    },
+    {
+      "path": "frontend/src/views/statusLabel.ts",
+      "bytes": 345,
+      "sha256": "1b11ed35965b2028c93e0ea676de5e6f7ebea787e97ec91246eab59a35268089"
+    },
+    {
+      "path": "frontend/src/views/streamText.ts",
+      "bytes": 1678,
+      "sha256": "e5b198ccdbd055929ebe7777401484f3bfafb726b7d20b2117fb5f2517bc07e2"
+    },
+    {
+      "path": "frontend/tsconfig.app.json",
+      "bytes": 521,
+      "sha256": "2ad1038aad9b5255634348327bd07e17eefa3847b5cada763c343ff66ed8cb40"
+    },
+    {
+      "path": "frontend/tsconfig.json",
+      "bytes": 120,
+      "sha256": "c3c1a5af0c9ed5727b295bd39076550c6a48a7a7d8a79eb29adc4e6c370830f0"
+    },
+    {
+      "path": "frontend/tsconfig.node.json",
+      "bytes": 232,
+      "sha256": "918299710ffe67780644dc853e088412c99ad5da5c5e91798b40421bbe826a14"
+    },
+    {
+      "path": "frontend/vite.config.ts",
+      "bytes": 480,
+      "sha256": "3e15e6533c0fba7b3e55fab01ac50abc85d72eb0b1820c10c029ed0f0670aea0"
+    },
+    {
+      "path": "inference/.env.example",
+      "bytes": 185,
+      "sha256": "592ee24b12df98990a74d1039b930f00029af9b0a333cc1267b3c48a43f3f4b5"
+    },
+    {
+      "path": "inference/README.md",
+      "bytes": 800,
+      "sha256": "8ad9dec94c958d82458dd39d3f06334dcf6eb9de154bfcb6b86fb4bf97ca79e6"
+    },
+    {
+      "path": "inference/main.py",
+      "bytes": 4781,
+      "sha256": "751453f941f049b46068fd9cfd523ddadf8d88aad339f799d103a708da917de3"
+    },
+    {
+      "path": "inference/model_runtime/__init__.py",
+      "bytes": 73,
+      "sha256": "457e40b608360e1392cbf08a0fe2fa0372cfd9ccf09444b183a3a03eec2fa739"
+    },
+    {
+      "path": "inference/model_runtime/classes.py",
+      "bytes": 1020,
+      "sha256": "a50af9de3f5d182b49296a3b1fbdcba7d27ef47124699b0093711ed57c074787"
+    },
+    {
+      "path": "inference/model_runtime/factory.py",
+      "bytes": 428,
+      "sha256": "c17f2b164cc0a490a28ac559b2f0abeaec6c9e0ce6aeb0283ebb44d8384260ed"
+    },
+    {
+      "path": "inference/model_runtime/image_input.py",
+      "bytes": 2695,
+      "sha256": "aef005dc9053cecd7f4c354779d79c69f78664a4b49942b91129ce11cdcc2efb"
+    },
+    {
+      "path": "inference/model_runtime/mock_backend.py",
+      "bytes": 2181,
+      "sha256": "856d8ea5c887367387a6ad80348f7b351ca85fec25ac71e8b3802d707c24e400"
+    },
+    {
+      "path": "inference/model_runtime/model_definition.py",
+      "bytes": 4876,
+      "sha256": "6d4e744ddf7c5f157a81c72fa933b8cbcacf62e4c51d9e8aeea70c0f46868ee8"
+    },
+    {
+      "path": "inference/model_runtime/pytorch_backend.py",
+      "bytes": 1921,
+      "sha256": "27cf318945d90c5e54f5ba12ea3aa8116e8347ea8b8c2a5f39970c7b566e8231"
+    },
+    {
+      "path": "inference/model_runtime/semantic_gate.py",
+      "bytes": 4337,
+      "sha256": "b6663b15402a31e779a9b53d29671eb23ee911d68ce4deb5e60fdf0fe576b1d3"
+    },
+    {
+      "path": "inference/model_runtime/settings.py",
+      "bytes": 1924,
+      "sha256": "7177a9d3e06a8a2bfb530f7770c58de8ba6891f9d42f95fe72d98d41c4de5dc0"
+    },
+    {
+      "path": "inference/model_runtime/team_model.py",
+      "bytes": 5626,
+      "sha256": "75903c10d427d861e243cf7a46dda9dd25330e89f07cc61a9bf422e47c8edd6e"
+    },
+    {
+      "path": "inference/model_runtime/types.py",
+      "bytes": 1057,
+      "sha256": "96520520dd33251329fe97dc2adc8334817862e4be06ab52a1e75d6a933c176d"
+    },
+    {
+      "path": "inference/model_runtime/validation.py",
+      "bytes": 1074,
+      "sha256": "acf7df3dbe62fabb6fa073cc563d2a5bf4740287601e6aeedfbe6015e1c7089d"
+    },
+    {
+      "path": "inference/model_self_check.py",
+      "bytes": 3903,
+      "sha256": "8e4ba523440dacf6ebed9feb4c103c874fe4944875fc1353b3f6f9577c1ffaea"
+    },
+    {
+      "path": "inference/requirements-model.txt",
+      "bytes": 119,
+      "sha256": "7b6bbb0f2e0fc62bfef6859b9ef5b9348b8b32ec41bfd6afb4e0d0f22fc5f4dd"
+    },
+    {
+      "path": "inference/requirements-win-cpu.lock.txt",
+      "bytes": 787,
+      "sha256": "899313be7088feb8fb28c493764df65e5224ecd53846eac2ed928f163a0b5323"
+    },
+    {
+      "path": "inference/requirements.txt",
+      "bytes": 69,
+      "sha256": "af8ec17276cc40576ed325dd9dd659ebb2067b413bac941f48e23caec5f5587b"
+    },
+    {
+      "path": "inference/start.ps1",
+      "bytes": 378,
+      "sha256": "f37084a5c4f8b7205b7c9ae6f0eca002660b829a714c5f8f780fcd4abe62cdca"
+    },
+    {
+      "path": "inference/training/__init__.py",
+      "bytes": 66,
+      "sha256": "098cbb3c2e48386cdf0c57668cd853acbe250e7038563c5be0f12b594691bf72"
+    },
+    {
+      "path": "inference/training/data.py",
+      "bytes": 11926,
+      "sha256": "88699c7b22b2243dd1d6eb55bdbf79a32577e3344e14cd95714a40d98bb64525"
+    },
+    {
+      "path": "inference/training/evaluate.py",
+      "bytes": 2979,
+      "sha256": "906eae7be6a65a5fb74d17b0a8c9448597d880fe967a09ecfb4d5f4112046d1d"
+    },
+    {
+      "path": "inference/training/inspect_dataset.py",
+      "bytes": 3663,
+      "sha256": "ef8456f87ad8b7514c9f9a916031d0dafd23fa9028b214fbaed909f742e0d531"
+    },
+    {
+      "path": "inference/training/metrics.py",
+      "bytes": 1749,
+      "sha256": "1f815ce95c5efc77690de2dd266c380932961d8145878f4162dae2d0321b4760"
+    },
+    {
+      "path": "inference/training/predict_submission.py",
+      "bytes": 3689,
+      "sha256": "e4fa936ed14ac5f06f70c219c7b0cd64787750f34b05a11ecc44bac1274a41e6"
+    },
+    {
+      "path": "inference/training/prepare_nih14.py",
+      "bytes": 5596,
+      "sha256": "45c657888568826bece790ab329f506d982fd577aa4153d45bd2c17483bd6c5b"
+    },
+    {
+      "path": "inference/training/train.py",
+      "bytes": 12638,
+      "sha256": "c4bd11cad6399b22ec59617ac19d10f64c65992501d93cb3de13724e68ade002"
+    },
+    {
+      "path": "inference/training/validate_submission.py",
+      "bytes": 2768,
+      "sha256": "0a435a459527af1d2b35f8654c63f8b6e081779a95a5bbae4d03d2d8c8842359"
+    },
+    {
+      "path": "package.json",
+      "bytes": 885,
+      "sha256": "8b0ca4ac1828a4602c3496fac3e9104cae6ba7fb596469df5f38229794d7e3c9"
+    },
+    {
+      "path": "scripts/acceptance-test.mjs",
+      "bytes": 13581,
+      "sha256": "2c3f655a70cd765efe389d3d2259e16d096b1a589611bcb118a0f859a2b8bc3f"
+    },
+    {
+      "path": "scripts/build-production.ps1",
+      "bytes": 825,
+      "sha256": "310af4da87a49bc283aeaae2a69f5995d5907511c0997906ef3366fce2e6fa52"
+    },
+    {
+      "path": "scripts/check-environment.ps1",
+      "bytes": 2855,
+      "sha256": "cb27e6e95d099a7dbb484068f02e345d87c9f0ce86850892943b5c1a2e17fde3"
+    },
+    {
+      "path": "scripts/check-model.ps1",
+      "bytes": 308,
+      "sha256": "db91cd3d3b321ea5f12f29e111085b97d235a6c6a8c60223b7d836e9e2f62d53"
+    },
+    {
+      "path": "scripts/ci-image-input.py",
+      "bytes": 4530,
+      "sha256": "0fc9edc7d04ef28f3df070c8ae07ccc881dc59605ae7085c90fda38bf0f85ccb"
+    },
+    {
+      "path": "scripts/ci-model-contract.py",
+      "bytes": 2514,
+      "sha256": "beb7ae65a133d5c34a9a37a47299e11abf655b063194c6af27c6d7e019cbf569"
+    },
+    {
+      "path": "scripts/ci-source-hygiene.mjs",
+      "bytes": 1465,
+      "sha256": "0f1c41ae84073f5847092f60523c515fc751bdb61a2f9385e7880b18fd242efe"
+    },
+    {
+      "path": "scripts/common.ps1",
+      "bytes": 2142,
+      "sha256": "fd5ca89ab03c78854aca6feb2dbb4d3186e52bc08082ab16216e86b1bf87d21d"
+    },
+    {
+      "path": "scripts/download-image-gate.py",
+      "bytes": 925,
+      "sha256": "748c9632238fac3a627f2c0cbdbe8a11fd2d852770d416a6607dd9de1e8b7a78"
+    },
+    {
+      "path": "scripts/prepare-publication.mjs",
+      "bytes": 3490,
+      "sha256": "2397395bdfd473b4c9993404140c501110682f55c11e404ada46e8d2d2f7e2b5"
+    },
+    {
+      "path": "scripts/release-preflight.mjs",
+      "bytes": 2899,
+      "sha256": "eaa2ae4b3341f40a87aab7d9e71cea464966f98b36e105b16091f036ccc1c8fa"
+    },
+    {
+      "path": "scripts/setup-system.ps1",
+      "bytes": 2011,
+      "sha256": "1cf7157727ca521c9a1937c97c7351a68d2bb1a23fbbd75ea1208becda7990ee"
+    },
+    {
+      "path": "scripts/start-system.ps1",
+      "bytes": 2589,
+      "sha256": "bed57ad0a24ecc4bfe797834a6805c19de34f63af890137795aa0684dd5b0300"
+    },
+    {
+      "path": "scripts/stop-system.ps1",
+      "bytes": 900,
+      "sha256": "7eb927cdf70373ed885b699357fd5d2645fca322784a866bd3face2ecb53625f"
+    },
+    {
+      "path": "server/.env.example",
+      "bytes": 651,
+      "sha256": "80828ef670f7eb53eb99084746f0029cadfb097f7c2b52316cdabb7b2023a7b7"
+    },
+    {
+      "path": "server/knowledge/classes.md",
+      "bytes": 1267,
+      "sha256": "9e372bf3dbda4e888d6a804c20d08b9944d9d02563c7a590c3d4989b12473cff"
+    },
+    {
+      "path": "server/knowledge/competition.md",
+      "bytes": 600,
+      "sha256": "2e6f3315b0881d6002e3f126f437c589a610e783bf4426d21681979ecfb02ba1"
+    },
+    {
+      "path": "server/knowledge/data-format.md",
+      "bytes": 953,
+      "sha256": "2d8f1bf3f5598e632348304d5847afefb56a63fdfa047c79a27553a728faaf25"
+    },
+    {
+      "path": "server/knowledge/deployment.md",
+      "bytes": 887,
+      "sha256": "e1293182ca5b0d83a38d6e08bceed621db3979c88946213e71f7ae915330dd7f"
+    },
+    {
+      "path": "server/knowledge/model-safety.md",
+      "bytes": 726,
+      "sha256": "5ab77793c557d351f2a4bb116c75e089cad934897b2e8c5ad475dacafb92f203"
+    },
+    {
+      "path": "server/knowledge/submission.md",
+      "bytes": 738,
+      "sha256": "26fb3e33813699199a1d6896e667625b39d6b09542e318dfd785ea02d7fafe5c"
+    },
+    {
+      "path": "server/knowledge/system-guide.md",
+      "bytes": 795,
+      "sha256": "f5f9e7a8366ef3a7410e083f43540b033cefbf2512de224de4f51c7889a44cbe"
+    },
+    {
+      "path": "server/knowledge/troubleshooting.md",
+      "bytes": 750,
+      "sha256": "480a3c8a7d054c6e0c0d9d5452b2d51dd975042ee0d3cb3107142f963b8780a7"
+    },
+    {
+      "path": "server/package-lock.json",
+      "bytes": 66439,
+      "sha256": "f9491afdfce7f6ce380bdb120fbde590e6ab84703763633f739910c75d225666"
+    },
+    {
+      "path": "server/package.json",
+      "bytes": 690,
+      "sha256": "02171a44871f247b235be17305c09c8f376b7a909f81009569bdcc98d15af938"
+    },
+    {
+      "path": "server/src/app.ts",
+      "bytes": 3603,
+      "sha256": "391a532e50a0cfd912502d4482187199b610a3a7d850b9101b01c02d35538e5c"
+    },
+    {
+      "path": "server/src/config/database.ts",
+      "bytes": 564,
+      "sha256": "af400b29d2b0a848f49dcce80638df43e58a5d246b67e46e6120b41af2b12075"
+    },
+    {
+      "path": "server/src/config/env.ts",
+      "bytes": 1784,
+      "sha256": "2dff31abe627b606922cc9bd1f4c33e42df6a3a1355e1bba8e8553e1d155030e"
+    },
+    {
+      "path": "server/src/constants/classes.ts",
+      "bytes": 862,
+      "sha256": "fbe4098b3af5ef29f218a54cc79e9df1fe412a1a2c8c5acab2426113537d6857"
+    },
+    {
+      "path": "server/src/middleware/auth.ts",
+      "bytes": 1307,
+      "sha256": "736455949b6a7c8b85417d7d785ebe9011a6b10b11d018016d10aaddae78bcd9"
+    },
+    {
+      "path": "server/src/middleware/upload.ts",
+      "bytes": 469,
+      "sha256": "25350f5b6101b3000e2b1e403d55508a2d11dbcdb5d379710d44d2f766c58907"
+    },
+    {
+      "path": "server/src/routes/assistant.routes.ts",
+      "bytes": 9509,
+      "sha256": "2980c49e49efc4424fad66d0eac50e80980794c4b1f5e7076d5034def1ad954f"
+    },
+    {
+      "path": "server/src/routes/auth.routes.ts",
+      "bytes": 6881,
+      "sha256": "17e8d57388794b29a144167c009995ce2235a94c13af68ff16560592e24b6199"
+    },
+    {
+      "path": "server/src/routes/classes.routes.ts",
+      "bytes": 279,
+      "sha256": "e0ba26794492cbf9f8ffc3954f6a06b26b05bf58de572444dc1c1d3f15c76ea3"
+    },
+    {
+      "path": "server/src/routes/clinical-reviews.routes.ts",
+      "bytes": 8550,
+      "sha256": "d3998f2426e784bdda14738529d2c42871c657c4e697927c7c1eef3549413dad"
+    },
+    {
+      "path": "server/src/routes/dashboard.routes.ts",
+      "bytes": 4530,
+      "sha256": "ed3bd449da5541fe587808c12c5aee682d96b0ec14ad911b7236a4ab94d470b6"
+    },
+    {
+      "path": "server/src/routes/health.routes.ts",
+      "bytes": 1400,
+      "sha256": "f3c5f82b20c96e7a89ab9095eea5693189b79dd506501141c2696688637ece83"
+    },
+    {
+      "path": "server/src/routes/studies.routes.ts",
+      "bytes": 11149,
+      "sha256": "eb5e5d6b58c2d7235dbd5584184feefb40c910f4bcd89c0b5e96d89c63ffe95b"
+    },
+    {
+      "path": "server/src/routes/tasks.routes.ts",
+      "bytes": 6459,
+      "sha256": "783b5a4452dafcea2d1681d17449746bf8b75d513dd5027ed70b18b2d99ba54c"
+    },
+    {
+      "path": "server/src/services/auth.service.ts",
+      "bytes": 4077,
+      "sha256": "adf195d416d1416dd551a7ef2073ee8dc7161ad90f30e41c6dc835cc870cc93b"
+    },
+    {
+      "path": "server/src/services/batch.service.ts",
+      "bytes": 5594,
+      "sha256": "8e1cf66ee143163533be08da96de45ad92f602cbf2391e2a7f5a1b9e7f95d539"
+    },
+    {
+      "path": "server/src/services/clinical-review.service.ts",
+      "bytes": 4499,
+      "sha256": "0c16a1c36597a5290448fbbdac964462abb600e34a3e7cf6d2bd2c68b0df2a29"
+    },
+    {
+      "path": "server/src/services/dataset.service.ts",
+      "bytes": 3122,
+      "sha256": "5c6abf0b7efcb9989e751c0e0b6699d1201debc6f7632ac2ff84d4cbb6ba6134"
+    },
+    {
+      "path": "server/src/services/image-storage.service.ts",
+      "bytes": 2076,
+      "sha256": "72a878a278131eb4f9d047d245339bf1115b0b04cf232749feb6de535dd07d14"
+    },
+    {
+      "path": "server/src/services/inference.service.ts",
+      "bytes": 4461,
+      "sha256": "33999d1232841704bcd8dcca984b7af3dae93cce0d7126d11bf199a199d58f48"
+    },
+    {
+      "path": "server/src/services/llm.service.ts",
+      "bytes": 13448,
+      "sha256": "8359c1c16d46018b50e7565a40d29b1750f59cc425e52dc3f052e5dabaa6175b"
+    },
+    {
+      "path": "server/src/services/rag.service.ts",
+      "bytes": 10926,
+      "sha256": "70d9820ebf059647b4eabf7f60efb003e1380ed60c58712feb5e3c911127b1f1"
+    },
+    {
+      "path": "server/src/services/submission.service.ts",
+      "bytes": 9706,
+      "sha256": "208fb77ba016ebb69d81f667f40f9b2dd35e0e636a5c6c8b0dc6071a27d087dd"
+    },
+    {
+      "path": "server/src/services/task-deletion.service.ts",
+      "bytes": 2215,
+      "sha256": "7b244e2985ce3e42f9e247006f7517b91cb0e6a1236da0d4f22b9a5e34adbf57"
+    },
+    {
+      "path": "server/src/services/task-events.service.ts",
+      "bytes": 458,
+      "sha256": "8956fd619741470e80428be19e23d7de7d57899bf934d1316969462a3f063e78"
+    },
+    {
+      "path": "server/src/types/auth.ts",
+      "bytes": 267,
+      "sha256": "224086c57be64ded96327dcf2a6311f49d8ab817d2f8a32748469586733bfbbd"
+    },
+    {
+      "path": "server/src/types/batch.ts",
+      "bytes": 496,
+      "sha256": "9b23607a57ab8e364baeb83d5238061d15a45ac4e31a1173537bc79c90b7d1cc"
+    },
+    {
+      "path": "server/src/types/inference.ts",
+      "bytes": 366,
+      "sha256": "a35ed44a99be7d7eeea12b3de278773d92286505f808c14b4283566573704ec6"
+    },
+    {
+      "path": "server/tsconfig.json",
+      "bytes": 335,
+      "sha256": "25b3f53b3dc65b56e9d83894345646b7769322884335a952f58aaf3c6f2c00da"
+    }
+  ]
+}

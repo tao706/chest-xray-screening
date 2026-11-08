@@ -1,0 +1,6 @@
+-r requirements.txt
+torch==2.10.0+cpu
+torchvision==0.25.0+cpu
+Pillow>=11.0,<13.0
+numpy>=2.0,<3.0
+transformers==4.57.1

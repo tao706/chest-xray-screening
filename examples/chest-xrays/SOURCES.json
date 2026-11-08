@@ -1,0 +1,32 @@
+[
+  {
+    "file": "chest-pa-01.jpg",
+    "author": "Mikael Häggström",
+    "source": "https://commons.wikimedia.org/wiki/File:Normal_posteroanterior_(PA)_chest_radiograph_(X-ray).jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/a/a1/Normal_posteroanterior_%28PA%29_chest_radiograph_%28X-ray%29.jpg",
+    "sha1": "3124c4cf4c55eb3d2defa9b909f08f94e941ec43",
+    "width": 1929,
+    "height": 2207,
+    "bytes": 906335,
+    "sha256": "4cbbcf805291db949e4ff085ca3c7258b2823de21b2857ae684e6c91ff9a38a4",
+    "license": "CC0-1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "modifications": "None; original file bytes retained",
+    "checked_on": "2026-11-07"
+  },
+  {
+    "file": "chest-pa-02.png",
+    "author": "Stillwaterising",
+    "source": "https://commons.wikimedia.org/wiki/File:Chest_Xray_PA_3-8-2010.png",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/c/c8/Chest_Xray_PA_3-8-2010.png",
+    "sha1": "f2625192628768f1ba7d808c627922c3c8f2eb33",
+    "width": 2412,
+    "height": 1956,
+    "bytes": 4198015,
+    "sha256": "a43431b089a6dfab031c10eceef6c821e4f326913bf9015f73f4a1f0446d2be1",
+    "license": "CC0-1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "modifications": "None; original file bytes retained",
+    "checked_on": "2026-11-07"
+  }
+]

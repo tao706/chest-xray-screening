@@ -1,0 +1,83 @@
+name: Quality checks
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: quality-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  web:
+    name: Web / Node ${{ matrix.node }}
+    runs-on: windows-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        node: ['22', '24']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+          cache: npm
+          cache-dependency-path: |
+            frontend/package-lock.json
+            server/package-lock.json
+      - name: Install frontend
+        run: npm --prefix frontend ci --no-audit --no-fund
+      - name: Install server
+        run: npm --prefix server ci --no-audit --no-fund
+      - name: Frontend types and build
+        run: npm --prefix frontend run build
+      - name: Server types
+        run: npm --prefix server run typecheck
+      - name: Server build
+        run: npm --prefix server run build
+
+  inference:
+    name: Python 3.12 / CPU contract
+    runs-on: windows-latest
+    timeout-minutes: 30
+    env:
+      PYTHONNOUSERSITE: '1'
+      MODEL_BACKEND: pytorch
+      MODEL_WEIGHTS: weights/ci-not-provided.pt
+      MODEL_INPUT_SIZE: '224'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: inference/requirements-win-cpu.lock.txt
+      - name: Install locked CPU dependencies
+        run: python -m pip install -r inference/requirements-win-cpu.lock.txt --extra-index-url https://download.pytorch.org/whl/cpu
+      - name: Dependency consistency
+        run: python -m pip check
+      - name: Python syntax
+        run: python -m compileall -q inference/main.py inference/model_runtime inference/training scripts/ci-model-contract.py
+      - name: Import and contract checks without private data
+        run: python scripts/ci-model-contract.py
+      - name: Image input rejection checks
+        run: python scripts/ci-image-input.py
+
+  publication:
+    name: Publication hygiene
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Inspect source candidates
+        run: npm run check:release
+      - name: Inspect tracked paths
+        run: node scripts/ci-source-hygiene.mjs

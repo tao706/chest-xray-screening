@@ -1,0 +1,120 @@
+{
+  "files": [
+    "README.md",
+    "LICENSE",
+    "THIRD_PARTY_NOTICES.md",
+    ".gitignore",
+    "package.json",
+    "frontend/index.html",
+    "frontend/package.json",
+    "frontend/package-lock.json",
+    "frontend/tsconfig.app.json",
+    "frontend/tsconfig.json",
+    "frontend/tsconfig.node.json",
+    "frontend/vite.config.ts",
+    "server/package.json",
+    "server/package-lock.json",
+    "server/tsconfig.json",
+    "server/.env.example",
+    "inference/.env.example",
+    "inference/main.py",
+    "inference/model_self_check.py",
+    "inference/start.ps1",
+    "inference/README.md",
+    "inference/requirements.txt",
+    "inference/requirements-model.txt",
+    "inference/requirements-win-cpu.lock.txt",
+    "database/schema.sql",
+    "database/README.md",
+    "docs/README.md",
+    "docs/API_CONTRACT.md",
+    "docs/ARCHITECTURE.md",
+    "docs/CI.md",
+    "docs/CLINICAL_REVIEW.md",
+    "docs/FEATURE_WALKTHROUGH.md",
+    "docs/INSTALL_VERIFICATION.md",
+    "docs/INSTALL_WINDOWS.md",
+    "docs/LICENSE_SCOPE.md",
+    "docs/LICENSING_STATUS.md",
+    "docs/LLM_SETUP.md",
+    "docs/MODEL_CARD.md",
+    "docs/VERSION_MAINTENANCE.md",
+    "docs/dependency-licenses.json",
+    "docs/RELEASE_FILES.json",
+    "docs/PUBLICATION_CHECKLIST.md",
+    "docs/ACCEPTANCE_REPORT.md",
+    ".gitattributes",
+    "docs/OPEN_SOURCE_READINESS.md",
+    "examples/chest-xrays/chest-pa-01.jpg",
+    "examples/chest-xrays/chest-pa-02.png",
+    "examples/chest-xrays/README.md",
+    "examples/chest-xrays/SOURCES.json",
+    "docs/INPUT_VALIDATION.md",
+    "docs/images/dashboard.png",
+    "docs/images/analysis-result.png",
+    "docs/images/image-controls.png",
+    "docs/images/assistant.png",
+    "docs/images/review-draft.png"
+  ],
+  "trees": [
+    {
+      "path": "frontend/src",
+      "extensions": [
+        ".vue",
+        ".ts",
+        ".css",
+        ".svg",
+        ".json"
+      ]
+    },
+    {
+      "path": "server/src",
+      "extensions": [
+        ".ts",
+        ".json"
+      ]
+    },
+    {
+      "path": "server/knowledge",
+      "extensions": [
+        ".md"
+      ]
+    },
+    {
+      "path": "inference/model_runtime",
+      "extensions": [
+        ".py"
+      ]
+    },
+    {
+      "path": "inference/training",
+      "extensions": [
+        ".py"
+      ]
+    },
+    {
+      "path": "scripts",
+      "extensions": [
+        ".ps1",
+        ".mjs",
+        ".py"
+      ]
+    },
+    {
+      "path": ".github/workflows",
+      "extensions": [
+        ".yml",
+        ".yaml"
+      ]
+    }
+  ],
+  "excludes": [
+    "actual .env files",
+    "weights and pretrained caches",
+    "datasets and images",
+    "uploads, exports and logs",
+    "node_modules and Python environments",
+    "dist and runtime process files",
+    "historical planning and task-allocation documents"
+  ]
+}
