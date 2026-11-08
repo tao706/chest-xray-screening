@@ -24,7 +24,7 @@
 
 ## 单独提供权重
 
-公开仓库不包含chest_model.pt；examples/chest-xrays随附两张CC0胸片。取得相应权限后将队友交付权重放入inference/weights/chest_model.pt。核对MODEL_CARD.md中的SHA-256。inference/.env配置pytorch、224像素及正确的权重路径。
+公开仓库不包含chest_model.pt；examples/chest-xrays随附两张CC0胸片。从[模型Release](https://github.com/tao706/chest-xray-screening/releases/tag/model-v1.0.0)下载权重并放入inference/weights/chest_model.pt。下载与校验步骤见[MODEL_DOWNLOAD.md](MODEL_DOWNLOAD.md)；私有仓库需要相应访问权限。核对MODEL_CARD.md中的SHA-256。inference/.env配置pytorch、224像素及正确的权重路径。
 
 缺少权重时应看到明确错误，不能以模拟输出代替。模型自检默认使用随附的CC0样例；接口验收仍需要另外配置本地批量验收数据，不能仅凭npm setup成功认定全链路已验收。
 

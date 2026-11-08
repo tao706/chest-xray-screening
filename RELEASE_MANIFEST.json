@@ -34,8 +34,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 13327,
-      "sha256": "b37cbc2cd94087a67fceb8de8cab4be65688374b0f2964ea40ad224212b4b10a"
+      "bytes": 13511,
+      "sha256": "1f26a94190621cb27b11ec560374e0a0c51b1783fcc7d6bee01214a750600448"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -99,8 +99,8 @@
     },
     {
       "path": "docs/INSTALL_WINDOWS.md",
-      "bytes": 3075,
-      "sha256": "98c8f04156f9cf6b0d1ff39480df29ff98b78705c29dd12aece168545dba21df"
+      "bytes": 3244,
+      "sha256": "57cd237bada44c36ea29445635da4fa596c6154990c97b1bf0883616a3e5c567"
     },
     {
       "path": "docs/LICENSE_SCOPE.md",
@@ -109,8 +109,8 @@
     },
     {
       "path": "docs/LICENSING_STATUS.md",
-      "bytes": 2292,
-      "sha256": "71f3340ee98ae2756fe13c48a9304a9bcd525322736a9a84b23a0b76f5b5e29c"
+      "bytes": 2391,
+      "sha256": "56f918934593c1a117f53da0a189354cb330940d28db3335aa99fefabc388886"
     },
     {
       "path": "docs/LLM_SETUP.md",
@@ -119,8 +119,13 @@
     },
     {
       "path": "docs/MODEL_CARD.md",
-      "bytes": 3163,
-      "sha256": "d26167c1a2b27bedf05c475ebc174750459448d2c7043b5d2b29505f83b929a7"
+      "bytes": 3440,
+      "sha256": "c150ca8b4d26ca6cbaf4b1b3d08387eff8c1fef94f3fabe8300f6ec4264a4eb7"
+    },
+    {
+      "path": "docs/MODEL_DOWNLOAD.md",
+      "bytes": 1883,
+      "sha256": "41a6814e4cf0dc4c0db8fd5df4a0dbf52e857ad38517ac92e4f5d35cb2704177"
     },
     {
       "path": "docs/OPEN_SOURCE_READINESS.md",
@@ -139,8 +144,8 @@
     },
     {
       "path": "docs/RELEASE_FILES.json",
-      "bytes": 2903,
-      "sha256": "f3444e00cc7e4029cb7bb6f9f635a4b495f7308e15bdc56b30f253efb9ac8ff6"
+      "bytes": 2934,
+      "sha256": "66b7dd1c7d7b54c0d0c0f983cf1713db3c31d4bfc1949147523925344807c874"
     },
     {
       "path": "docs/VERSION_MAINTENANCE.md",

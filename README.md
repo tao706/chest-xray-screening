@@ -87,7 +87,7 @@ RAG在此指“检索资料后辅助生成回答”的流程：LangChain.js负�
 - **上传接口回归通过**：人物照、日常场景照及其灰度版本返回拒绝提示；公开胸片样例通过；拒绝输入未生成检查记录。这是有限样本回归，不是完整识别率评估。
 - **发布检查通过**：检查实际跟踪路径及源码发布范围，排除真实配置、运行记录和模型权重。
 
-验证步骤见[验证说明](#验证)。GitHub Actions已配置，云端运行状态需首次推送后确认。
+验证步骤见[验证说明](#验证)。首次GitHub Actions云端检查已通过（2026-11-09核对），后续以仓库Actions页面的对应提交状态为准。
 
 ## 快速开始
 
@@ -101,7 +101,7 @@ npm run setup
 ```
 
 3. 执行 `database/schema.sql` 初始化结构，在 `server/.env` 配置数据库和首次管理员密码。安装器不会覆盖现有配置。
-4. 单独取得有权使用的模型权重，将 `chest_model.pt` 放入 `inference/weights/`，核对[模型说明](docs/MODEL_CARD.md)中的指纹。
+4. 从[模型 Release](https://github.com/tao706/chest-xray-screening/releases/tag/model-v1.0.0)下载 `chest_model.pt`，放入 `inference/weights/`；按[权重下载说明](docs/MODEL_DOWNLOAD.md)核对SHA-256。
 5. 下载本地图像准入校验权重（约600MB）：
 
 ```powershell
@@ -120,7 +120,7 @@ npm start
 
 详细步骤与常见问题见[Windows安装指南](docs/INSTALL_WINDOWS.md)。源码不附带实际配置、业务数据或模型权重。
 
-疾病分类权重目前尚无公开下载链接。协作者已同意公开，待上游条款与权重许可明确后拟单独提供；当前需联系维护者确认获取方式。图像准入校验权重可用上述脚本下载。
+疾病分类权重通过[独立 Release](https://github.com/tao706/chest-xray-screening/releases/tag/model-v1.0.0)提供，不放入源码Git仓库。仓库为私有时，下载需要相应访问权限。图像准入校验权重另用上述脚本下载。
 
 ## 体验样例
 
@@ -207,7 +207,7 @@ datasets/   本地数据集入口，不进入公开仓库
 
 ## 持续集成
 
-GitHub Actions覆盖Windows上的Node.js 22/24构建、Python 3.12依赖与模型契约、发布路径检查。尚未在远程GitHub仓库运行，详见[CI说明](docs/CI.md)。
+GitHub Actions覆盖Windows上的Node.js 22/24构建、Python 3.12依赖与模型契约、发布路径检查。首次远程运行已通过，后续状态见仓库Actions页面，工作流说明见[CI说明](docs/CI.md)。
 
 ## 许可
 

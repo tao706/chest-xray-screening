@@ -54,7 +54,8 @@
     "docs/images/analysis-result.png",
     "docs/images/image-controls.png",
     "docs/images/assistant.png",
-    "docs/images/review-draft.png"
+    "docs/images/review-draft.png",
+    "docs/MODEL_DOWNLOAD.md"
   ],
   "trees": [
     {
