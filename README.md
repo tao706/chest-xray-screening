@@ -115,6 +115,10 @@ npm run quickstart
 
 疾病模型下载后核对SHA-256，失败不覆盖原文件，断网时会停止并提示重试。已存在账号不会因为修改初始密码配置而重置密码。手动安装、网络失败及数据库权限处理见[Windows安装指南](docs/INSTALL_WINDOWS.md)和[权重说明](docs/MODEL_DOWNLOAD.md)。
 
+### 疾病模型下载
+
+引导命令会自动下载。需要手动获取时，打开 **[模型 Release 下载页](https://github.com/tao706/chest-xray-screening/releases/tag/model-v1.0.0)**，在 **Assets** 中下载 `chest_model.pt`，放入 `inference/weights/`。同页提供 `SHA256SUMS.txt`；校验步骤见[权重说明](docs/MODEL_DOWNLOAD.md)。
+
 ## 体验样例
 
 [examples/chest-xrays](examples/chest-xrays/README.md)随附两张CC0正位胸片，作者、来源和校验值均已记录。配置权重后可选择图片体验上传与分析；两张图片分别建立检查，不作为模型准确率测试集。
