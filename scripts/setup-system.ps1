@@ -1,3 +1,4 @@
+param([switch]$SkipModels)
 . (Join-Path $PSScriptRoot 'common.ps1')
 $root = Get-ProjectRoot
 if (-not (Get-Command npm.cmd -ErrorAction SilentlyContinue)) { throw 'Install Node.js 22.12+ or 24 LTS first.' }
@@ -28,4 +29,5 @@ foreach ($part in @('server','inference')) {
   if (-not (Test-Path -LiteralPath $config)) { Copy-Item -LiteralPath (Join-Path $root "$part\.env.example") -Destination $config }
 }
 & (Join-Path $PSScriptRoot 'build-production.ps1')
-Write-Host 'Setup completed. Configure server/.env, initialize MySQL with database/schema.sql, and supply authorized weights at inference/weights/chest_model.pt and run inference/.venv312/Scripts/python.exe scripts/download-image-gate.py before npm start.'
+if (-not $SkipModels) { & (Join-Path $PSScriptRoot 'prepare-models.ps1') }
+Write-Host 'Setup completed. Run npm run quickstart for guided configuration, database initialization and startup.'

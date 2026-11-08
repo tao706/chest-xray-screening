@@ -11,6 +11,11 @@
     "check:model": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/check-model.ps1",
     "test:acceptance": "node scripts/acceptance-test.mjs",
     "setup": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/setup-system.ps1",
-    "check:release": "node scripts/release-preflight.mjs"
+    "check:release": "node scripts/release-preflight.mjs",
+    "quickstart": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/quickstart.ps1",
+    "configure": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/configure-system.ps1",
+    "db:init": "node scripts/local-database.mjs init",
+    "models:prepare": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/prepare-models.ps1",
+    "test:bootstrap": "node --test scripts/local-database.test.mjs"
   }
 }

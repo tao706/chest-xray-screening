@@ -1,6 +1,10 @@
 # 疾病分类权重下载与校验
 
-## 下载
+## 自动下载（推荐）
+
+安装依赖后执行 `npm run models:prepare`，自动下载疾病模型并核对大小与SHA-256，再准备图像准入模型。首次体验可直接 `npm run quickstart`，它会串起全部步骤。已有疾病文件通过校验则跳过下载；失败不会覆盖原文件。
+
+## 手动下载
 
 从 [模型 Release](https://github.com/tao706/chest-xray-screening/releases/tag/model-v1.0.0) 的 Assets 下载 `chest_model.pt` 与 `SHA256SUMS.txt`。仓库为私有时，需要登录有访问权限的GitHub账号；下载链接不绕过仓库权限。
 

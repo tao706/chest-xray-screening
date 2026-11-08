@@ -82,7 +82,7 @@ RAG在此指“检索资料后辅助生成回答”的流程：LangChain.js负�
 
 当前本机验证结果：
 
-- **13项自动化测试通过**：8项输入准入测试、5项模型契约测试。
+- **22项自动化测试通过**：8项输入准入、5项模型契约、4项下载完整性、5项本地配置与数据库结构校验测试。
 - **独立目录安装与构建通过**：使用锁文件重新安装前后端依赖，完成Vue类型检查、Vite构建和Express TypeScript编译。
 - **上传接口回归通过**：人物照、日常场景照及其灰度版本返回拒绝提示；公开胸片样例通过；拒绝输入未生成检查记录。这是有限样本回归，不是完整识别率评估。
 - **发布检查通过**：检查实际跟踪路径及源码发布范围，排除真实配置、运行记录和模型权重。
@@ -91,36 +91,29 @@ RAG在此指“检索资料后辅助生成回答”的流程：LangChain.js负�
 
 ## 快速开始
 
-已验证的安装基线是Windows x64、Node.js 22.12及以上、Python 3.12、MySQL 8和CPU推理。
+前置环境：Windows x64、Node.js 22.12及以上、Python 3.12、已启动的MySQL 8。首次安装需要访问npm、Python依赖源、GitHub与Hugging Face，并下载推理依赖及约600MB图像准入权重，耗时取决于网络。
 
-1. 安装上述环境，确保Python 3.12可通过PATH、Python Launcher或CHEST_AI_PYTHON找到。
-2. 在项目根目录执行：
-
-```powershell
-npm run setup
-```
-
-3. 执行 `database/schema.sql` 初始化结构，在 `server/.env` 配置数据库和首次管理员密码。安装器不会覆盖现有配置。
-4. 从[模型 Release](https://github.com/tao706/chest-xray-screening/releases/tag/model-v1.0.0)下载 `chest_model.pt`，放入 `inference/weights/`；按[权重下载说明](docs/MODEL_DOWNLOAD.md)核对SHA-256。
-5. 下载本地图像准入校验权重（约600MB）：
+下载或克隆源码后，在项目根目录打开PowerShell，执行：
 
 ```powershell
-& .\inference\.venv312\Scripts\python.exe .\scripts\download-image-gate.py
+npm run quickstart
 ```
 
-6. 如需在线智能助手，在 `server/.env` 填写自己的 `LLM_API_KEY`、`LLM_BASE_URL` 和 `LLM_MODEL`；不填密钥时使用本地规则回答。不要提交实际 `.env`。
-7. 检查并启动：
+命令依次完成依赖安装与构建、交互填写本地配置、初始化数据库结构、下载两类模型、环境检查与启动。配置时输入自己的MySQL账号密码，以及自定的初始管理员账号密码；密码输入隐藏，不会上传。MySQL账号需要创建数据库与表的权限，已有表和记录不会被清空。
 
-```powershell
-npm run check
-npm start
-```
+启动后打开 http://127.0.0.1:3000 ，使用刚配置的管理员登录，选择随附公开胸片体验。停止服务用 `npm stop`。再次执行会复用现有配置和本地模型；代码或依赖更新后先执行 `npm run setup` 重新构建。
 
-访问 http://127.0.0.1:3000 ，使用本地配置的管理员登录。停止服务使用 `npm stop`。
+在线智能助手密钥可选：在 `server/.env` 设置自己的 `LLM_API_KEY`、`LLM_BASE_URL` 和 `LLM_MODEL`；未配置时使用本地规则回答。当前没有托管的在线演示地址。
 
-详细步骤与常见问题见[Windows安装指南](docs/INSTALL_WINDOWS.md)。源码不附带实际配置、业务数据或模型权重。
+| 单独操作 | 命令 |
+| --- | --- |
+| 安装依赖、构建并准备模型 | `npm run setup` |
+| 修改本地数据库和初始管理员配置 | `npm run configure -- -Force` |
+| 初始化数据库结构 | `npm run db:init` |
+| 下载或检查两类模型 | `npm run models:prepare` |
+| 检查环境 / 启动 / 停止 | `npm run check` / `npm start` / `npm stop` |
 
-疾病分类权重通过[独立 Release](https://github.com/tao706/chest-xray-screening/releases/tag/model-v1.0.0)提供，不放入源码Git仓库。仓库为私有时，下载需要相应访问权限。图像准入校验权重另用上述脚本下载。
+疾病模型下载后核对SHA-256，失败不覆盖原文件，断网时会停止并提示重试。已存在账号不会因为修改初始密码配置而重置密码。手动安装、网络失败及数据库权限处理见[Windows安装指南](docs/INSTALL_WINDOWS.md)和[权重说明](docs/MODEL_DOWNLOAD.md)。
 
 ## 体验样例
 
@@ -156,6 +149,8 @@ flowchart LR
 npm run build
 & .\inference\.venv312\Scripts\python.exe .\scripts\ci-image-input.py
 & .\inference\.venv312\Scripts\python.exe .\scripts\ci-model-contract.py
+npm run test:bootstrap
+& .\inference\.venv312\Scripts\python.exe .\scripts\ci-download-model.py
 npm run check:release
 ```
 

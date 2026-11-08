@@ -34,6 +34,8 @@ jobs:
         run: npm --prefix frontend ci --no-audit --no-fund
       - name: Install server
         run: npm --prefix server ci --no-audit --no-fund
+      - name: Local setup configuration checks
+        run: npm run test:bootstrap
       - name: Frontend types and build
         run: npm --prefix frontend run build
       - name: Server types
@@ -65,6 +67,8 @@ jobs:
         run: python -m compileall -q inference/main.py inference/model_runtime inference/training scripts/ci-model-contract.py
       - name: Import and contract checks without private data
         run: python scripts/ci-model-contract.py
+      - name: Model download integrity checks
+        run: python scripts/ci-download-model.py
       - name: Image input rejection checks
         run: python scripts/ci-image-input.py
 

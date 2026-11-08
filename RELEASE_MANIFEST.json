@@ -19,8 +19,8 @@
     },
     {
       "path": ".github/workflows/ci.yml",
-      "bytes": 2598,
-      "sha256": "e152dbbec769baa669ca921c8d1cb684689bb84fbad212e4cd314523ab184208"
+      "bytes": 2780,
+      "sha256": "4187ef6b78a9ebf943a3235b71a18db96da369cb750cc8bc65254a8b63aa3e0e"
     },
     {
       "path": ".gitignore",
@@ -34,8 +34,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 13511,
-      "sha256": "1f26a94190621cb27b11ec560374e0a0c51b1783fcc7d6bee01214a750600448"
+      "bytes": 13973,
+      "sha256": "659638a99c460021462ffbcfb91594b4a6c0452cd98bd58bcf048e93385a8ffc"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -99,8 +99,8 @@
     },
     {
       "path": "docs/INSTALL_WINDOWS.md",
-      "bytes": 3244,
-      "sha256": "57cd237bada44c36ea29445635da4fa596c6154990c97b1bf0883616a3e5c567"
+      "bytes": 3412,
+      "sha256": "90a2a4c2821f0e88a0cbee5bf9190eefd305e5c0036c328e63b1b0cd9ecc0002"
     },
     {
       "path": "docs/LICENSE_SCOPE.md",
@@ -124,8 +124,8 @@
     },
     {
       "path": "docs/MODEL_DOWNLOAD.md",
-      "bytes": 1883,
-      "sha256": "41a6814e4cf0dc4c0db8fd5df4a0dbf52e857ad38517ac92e4f5d35cb2704177"
+      "bytes": 2205,
+      "sha256": "23b9bb902875343009b86d03b0360e5f93f0ff568a23ecae6ea303062eeadb1f"
     },
     {
       "path": "docs/OPEN_SOURCE_READINESS.md",
@@ -589,8 +589,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 885,
-      "sha256": "8b0ca4ac1828a4602c3496fac3e9104cae6ba7fb596469df5f38229794d7e3c9"
+      "bytes": 1315,
+      "sha256": "f3dfc2070e74236c98f555860c218bc206f6f0cef4ed993d19cf6246351f30d8"
     },
     {
       "path": "scripts/acceptance-test.mjs",
@@ -604,13 +604,18 @@
     },
     {
       "path": "scripts/check-environment.ps1",
-      "bytes": 2855,
-      "sha256": "cb27e6e95d099a7dbb484068f02e345d87c9f0ce86850892943b5c1a2e17fde3"
+      "bytes": 3080,
+      "sha256": "6925eb90df6f90154d41fe6cffa551a71ed87ccfb9c5a9457f5fab94f0c9f29a"
     },
     {
       "path": "scripts/check-model.ps1",
       "bytes": 308,
       "sha256": "db91cd3d3b321ea5f12f29e111085b97d235a6c6a8c60223b7d836e9e2f62d53"
+    },
+    {
+      "path": "scripts/ci-download-model.py",
+      "bytes": 2429,
+      "sha256": "7532751d55360f8b0fd640d7d5cb3c5f85fbc3165afe2705cc4a28bfa35080fd"
     },
     {
       "path": "scripts/ci-image-input.py",
@@ -633,14 +638,44 @@
       "sha256": "fd5ca89ab03c78854aca6feb2dbb4d3186e52bc08082ab16216e86b1bf87d21d"
     },
     {
+      "path": "scripts/configure-system.ps1",
+      "bytes": 1957,
+      "sha256": "f73e3d01fd8c396ec2a675b2ef1dbc98a6df47a19c5e54fc611ef39bed4ee4c4"
+    },
+    {
       "path": "scripts/download-image-gate.py",
-      "bytes": 925,
-      "sha256": "748c9632238fac3a627f2c0cbdbe8a11fd2d852770d416a6607dd9de1e8b7a78"
+      "bytes": 1746,
+      "sha256": "b210775155d5d991dfd7f48febbb98cc6f83c3ffea8c716b3b78b4b100d16639"
+    },
+    {
+      "path": "scripts/download-model.py",
+      "bytes": 3824,
+      "sha256": "f51ee3cbb0043d004eb3058db71218f5216cb4c02372823baff482d13e7f68e9"
+    },
+    {
+      "path": "scripts/local-database.mjs",
+      "bytes": 4978,
+      "sha256": "7eed93b1593a44d18affff1a0c13b7fd25361e0a1862f7ade5c8c004e89812ea"
+    },
+    {
+      "path": "scripts/local-database.test.mjs",
+      "bytes": 2220,
+      "sha256": "fe215088c17f721ee0d3b7cd253e8a26dfd3997d2de9aaf1940f472b06c74b25"
+    },
+    {
+      "path": "scripts/prepare-models.ps1",
+      "bytes": 464,
+      "sha256": "2ab40a9a9d3ec90679b1fff774d55e8cefb7e02b4cae1b96c661541408eaa3ec"
     },
     {
       "path": "scripts/prepare-publication.mjs",
       "bytes": 3490,
       "sha256": "2397395bdfd473b4c9993404140c501110682f55c11e404ada46e8d2d2f7e2b5"
+    },
+    {
+      "path": "scripts/quickstart.ps1",
+      "bytes": 1429,
+      "sha256": "f2c8729462a66d656dff843c2e17a7dcf03423de586a9c3d39c0fb70ea20e928"
     },
     {
       "path": "scripts/release-preflight.mjs",
@@ -649,13 +684,13 @@
     },
     {
       "path": "scripts/setup-system.ps1",
-      "bytes": 2011,
-      "sha256": "1cf7157727ca521c9a1937c97c7351a68d2bb1a23fbbd75ea1208becda7990ee"
+      "bytes": 1974,
+      "sha256": "f0029d93dc8348eeac043a5b9911d899dc15ff25a63fe75eb8a85008eb246163"
     },
     {
       "path": "scripts/start-system.ps1",
-      "bytes": 2589,
-      "sha256": "bed57ad0a24ecc4bfe797834a6805c19de34f63af890137795aa0684dd5b0300"
+      "bytes": 2971,
+      "sha256": "b56f51e4309a71356818abcd551a9eb6a386ce5878d8e7b0f4d5cb6cbef340d9"
     },
     {
       "path": "scripts/stop-system.ps1",
