@@ -1,0 +1,14 @@
+FROM python:3.12-slim-bookworm
+ENV PYTHONUNBUFFERED=1 PYTHONNOUSERSITE=1 PIP_NO_CACHE_DIR=1 HF_HUB_DISABLE_XET=1
+WORKDIR /app/inference
+RUN apt-get update && apt-get install -y --no-install-recommends libgomp1 libjpeg62-turbo && rm -rf /var/lib/apt/lists/*
+COPY inference/requirements-win-cpu.lock.txt /tmp/requirements.txt
+RUN pip install -r /tmp/requirements.txt --extra-index-url https://download.pytorch.org/whl/cpu && pip check
+COPY inference/main.py .
+COPY inference/model_runtime model_runtime
+COPY scripts/download-model.py scripts/download-image-gate.py scripts/ci-download-model.py /app/scripts/
+COPY examples /app/examples
+RUN useradd --uid 10001 --create-home inference && mkdir -p weights
+USER inference
+EXPOSE 8000
+CMD ["python","-m","uvicorn","main:app","--host","0.0.0.0","--port","8000","--workers","1"]

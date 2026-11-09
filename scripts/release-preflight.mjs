@@ -3,8 +3,8 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const excluded=new Set(['node_modules','dist','.venv','.venv312','.python_packages','.git','.runtime','__pycache__','.idea','.vscode','logs','uploads','exports','weights']);
-const roots=['frontend','server','inference','scripts','database','docs','.github','examples'];
-const files=['README.md','package.json','.gitignore','LICENSE','THIRD_PARTY_NOTICES.md'];
+const roots=['frontend','server','inference','scripts','database','docs','.github','examples','deploy'];
+const files=['README.md','package.json','.gitignore','LICENSE','THIRD_PARTY_NOTICES.md','compose.yaml','.dockerignore'];
 const issues=[];
 async function walk(dir){
  for(const e of await readdir(path.join(root,dir),{withFileTypes:true})){

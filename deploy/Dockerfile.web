@@ -1,0 +1,24 @@
+FROM node:22-bookworm-slim AS build
+WORKDIR /app
+COPY frontend/package*.json frontend/
+COPY server/package*.json server/
+RUN npm --prefix frontend ci --no-audit --no-fund && npm --prefix server ci --no-audit --no-fund
+COPY frontend frontend
+COPY server server
+RUN npm --prefix frontend run build && npm --prefix server run build && npm --prefix server prune --omit=dev
+
+FROM node:22-bookworm-slim
+ENV NODE_ENV=production
+WORKDIR /app/server
+COPY --from=build --chown=node:node /app/server/dist dist
+COPY --from=build --chown=node:node /app/server/node_modules node_modules
+COPY server/package.json package.json
+COPY server/knowledge knowledge
+COPY --from=build /app/frontend/dist /app/frontend/dist
+COPY examples /app/examples
+COPY deploy/init-demo.mjs /app/deploy/init-demo.mjs
+COPY scripts/ci-demo.mjs /app/scripts/ci-demo.mjs
+RUN mkdir -p /app/server/uploads /app/server/exports /app/datasets && chown -R node:node /app/server/uploads /app/server/exports /app/datasets
+USER node
+EXPOSE 3000
+CMD ["node","dist/app.js"]

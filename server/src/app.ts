@@ -1,3 +1,4 @@
+import {demoEnabled,demoTraffic,demoPolicy,demoSamplesRoot} from "./middleware/demo.js";
 import { ImageInputError, ImageGateUnavailableError } from "./services/inference.service.js";
 import cors from "cors";
 import express from "express";
@@ -17,6 +18,10 @@ import { requireAuth } from "./middleware/auth.js";
 import { ensureAuthSchema } from "./services/auth.service.js";
 const app = express();
 app.disable("x-powered-by");
+if (demoEnabled) app.set("trust proxy", 1);
+app.use(demoTraffic);
+app.get("/api/public-config", (_request,response)=>response.json({demoMode:demoEnabled}));
+if (demoEnabled) app.use("/demo-samples",express.static(demoSamplesRoot,{index:false}));
 app.use(cors({ origin: env.frontendOrigin, credentials: true }));
 app.use(express.json({ limit: "1mb" }));
 app.get("/api", (_request, response) => {
@@ -25,6 +30,7 @@ app.get("/api", (_request, response) => {
 app.use("/api/health", healthRouter);
 app.use("/api/auth", authRouter);
 app.use("/api", requireAuth);
+app.use("/api", demoPolicy);
 app.use("/api/classes", classesRouter);
 app.use("/api/studies", studiesRouter);
 app.use("/api/tasks", tasksRouter);
@@ -64,7 +70,7 @@ app.use((error: unknown, _request: express.Request, response: express.Response, 
     response.status(duplicateStudy ? 409 : 500).json({
         success: false,
         code: duplicateStudy ? "STUDY_EXISTS" : "INTERNAL_ERROR",
-        message: duplicateStudy ? "该Study_id已经存在" : message
+        message: duplicateStudy ? "该Study_id已经存在" : process.env.NODE_ENV === "production" ? "服务暂时不可用，请稍后重试" : message
     });
 });
 void ensureAuthSchema().catch((error) => console.error("Auth schema initialization failed:", error));

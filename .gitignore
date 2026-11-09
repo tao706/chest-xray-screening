@@ -32,3 +32,5 @@ datasets/*
 Thumbs.db
 
 inference/.venv312/
+
+deploy/.env

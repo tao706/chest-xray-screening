@@ -1,0 +1,126 @@
+name: chest-demo
+x-web-environment: &web-environment
+  NODE_ENV: production
+  HOST: 0.0.0.0
+  PORT: '3000'
+  FRONTEND_ORIGIN: ${PUBLIC_ORIGIN:?Set PUBLIC_ORIGIN in deploy/.env}
+  DB_HOST: db
+  DB_PORT: '3306'
+  DB_USER: screening
+  DB_PASSWORD: ${MYSQL_PASSWORD:?Set MYSQL_PASSWORD}
+  DB_NAME: chest_xray
+  INFERENCE_URL: http://inference:8000
+  FRONTEND_DIST: /app/frontend/dist
+  BATCH_DATA_ROOT: /app/datasets
+  UPLOAD_ROOT: /app/server/uploads
+  AUTH_DEMO_USERNAME: owner
+  AUTH_DEMO_PASSWORD: ${OWNER_PASSWORD:?Set OWNER_PASSWORD}
+  AUTH_COOKIE_SECURE: 'true'
+  AUTH_ALLOW_REGISTRATION: 'false'
+  DEMO_MODE: 'true'
+  CLINICAL_LLM_ENABLED: 'false'
+  LLM_API_KEY: ${LLM_API_KEY:-}
+  LLM_BASE_URL: ${LLM_BASE_URL:-https://api.deepseek.com}
+  LLM_MODEL: ${LLM_MODEL:-deepseek-flash}
+services:
+  db:
+    image: mysql:8.0
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: chest_xray
+      MYSQL_USER: screening
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:?Set MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?Set MYSQL_ROOT_PASSWORD}
+    volumes:
+      - demo_database:/var/lib/mysql
+      - ./database/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql:ro
+    healthcheck:
+      test: [CMD-SHELL, 'MYSQL_PWD="$${MYSQL_PASSWORD}" mysql -h 127.0.0.1 -u screening chest_xray -e "SELECT 1 FROM studies LIMIT 0" >/dev/null 2>&1']
+      interval: 10s
+      timeout: 5s
+      retries: 30
+  models:
+    build:
+      context: .
+      dockerfile: deploy/Dockerfile.inference
+    user: root
+    command: [sh, -c, 'python /app/scripts/download-model.py && python /app/scripts/download-image-gate.py']
+    volumes:
+      - demo_models:/app/inference/weights
+  inference:
+    build:
+      context: .
+      dockerfile: deploy/Dockerfile.inference
+    restart: unless-stopped
+    depends_on:
+      models:
+        condition: service_completed_successfully
+    environment:
+      MODEL_BACKEND: pytorch
+      MODEL_WEIGHTS: weights/chest_model.pt
+      MODEL_DEVICE: cpu
+      MODEL_INPUT_SIZE: '224'
+      MODEL_MAX_IMAGES: '2'
+      MODEL_CONCURRENCY_LIMIT: '1'
+      OMP_NUM_THREADS: '2'
+      TOKENIZERS_PARALLELISM: 'false'
+    volumes:
+      - demo_models:/app/inference/weights:ro
+    healthcheck:
+      test: [CMD, python, -c, "import json,urllib.request; d=json.load(urllib.request.urlopen('http://127.0.0.1:8000/internal/health',timeout=5)); assert d['input_gate_ready']"]
+      interval: 15s
+      timeout: 10s
+      retries: 30
+      start_period: 120s
+  demo-init:
+    build:
+      context: .
+      dockerfile: deploy/Dockerfile.web
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      <<: *web-environment
+      DEMO_PASSWORD: ${DEMO_PASSWORD:?Set DEMO_PASSWORD}
+    command: [node, /app/deploy/init-demo.mjs]
+  web:
+    build:
+      context: .
+      dockerfile: deploy/Dockerfile.web
+    restart: unless-stopped
+    depends_on:
+      demo-init:
+        condition: service_completed_successfully
+      inference:
+        condition: service_healthy
+    environment: *web-environment
+    volumes:
+      - demo_uploads:/app/server/uploads
+      - demo_exports:/app/server/exports
+    healthcheck:
+      test: [CMD, node, -e, "fetch('http://127.0.0.1:3000/api/health').then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))"]
+      interval: 15s
+      timeout: 10s
+      retries: 20
+  proxy:
+    image: caddy:2
+    restart: unless-stopped
+    depends_on:
+      web:
+        condition: service_healthy
+    environment:
+      CADDY_SITE: ${CADDY_SITE:?Set CADDY_SITE}
+    ports:
+      - '80:80'
+      - '443:443'
+    volumes:
+      - ./deploy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - demo_caddy_data:/data
+      - demo_caddy_config:/config
+volumes:
+  demo_database:
+  demo_models:
+  demo_uploads:
+  demo_exports:
+  demo_caddy_data:
+  demo_caddy_config:

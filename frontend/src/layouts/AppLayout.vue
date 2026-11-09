@@ -1,4 +1,5 @@
 <script setup lang="ts">import { computed } from "vue";
+import DemoNotice from "@/components/DemoNotice.vue";
 import { storeToRefs } from "pinia";
 import { useRoute } from "vue-router";
 import { navigationItems } from "@/config/navigation";
@@ -103,6 +104,7 @@ async function signOut() {
       </header>
 
       <main class="main-content">
+        <DemoNotice />
         <RouterView />
       </main>
     </div>

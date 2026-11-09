@@ -42,6 +42,8 @@ jobs:
         run: npm --prefix server run typecheck
       - name: Server build
         run: npm --prefix server run build
+      - name: Demo API policy checks
+        run: npm run test:demo
 
   inference:
     name: Python 3.12 / CPU contract
@@ -67,6 +69,8 @@ jobs:
         run: python -m compileall -q inference/main.py inference/model_runtime inference/training scripts/ci-model-contract.py
       - name: Import and contract checks without private data
         run: python scripts/ci-model-contract.py
+      - name: Inference concurrency checks
+        run: python scripts/ci-concurrency.py
       - name: Model download integrity checks
         run: python scripts/ci-download-model.py
       - name: Image input rejection checks
@@ -85,3 +89,31 @@ jobs:
         run: npm run check:release
       - name: Inspect tracked paths
         run: node scripts/ci-source-hygiene.mjs
+
+  containers:
+    name: Linux container preparation
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Generate isolated CI configuration
+        run: node deploy/configure.mjs demo.example.test
+      - name: Validate Compose and build container images
+        run: |
+          docker compose --env-file deploy/.env config --quiet
+          docker compose --env-file deploy/.env build web inference demo-init
+      - name: Linux Python import and download checks
+        run: |
+          docker compose --env-file deploy/.env run --rm --no-deps inference python -c 'import main,torch,torchvision,transformers'
+          docker compose --env-file deploy/.env run --rm --no-deps inference python /app/scripts/ci-download-model.py
+      - name: Initialize isolated MySQL and demo accounts
+        run: |
+          docker compose --env-file deploy/.env up -d --wait --wait-timeout 180 db
+          docker compose --env-file deploy/.env run --rm --no-deps demo-init
+          docker compose --env-file deploy/.env run --rm --no-deps web node /app/scripts/ci-demo.mjs
+      - name: Stop isolated CI services
+        if: always()
+        run: docker compose --env-file deploy/.env down

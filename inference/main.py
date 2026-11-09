@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import asyncio
+import os
 import base64
 import time
 from contextlib import asynccontextmanager
@@ -9,6 +10,7 @@ from typing import Annotated
 from fastapi import FastAPI, File, Form, HTTPException, UploadFile
 
 from model_runtime.classes import CHEST_XRAY_CLASSES
+from model_runtime.concurrency import InferenceSlots, InferenceBusy
 from model_runtime.image_input import validate_chest_input
 from model_runtime.semantic_gate import image_gate, validate_semantic_chest, ImageGateUnavailable
 from model_runtime.factory import create_backend
@@ -16,6 +18,7 @@ from model_runtime.settings import settings
 from model_runtime.types import ImageInput
 
 backend = create_backend(settings)
+slots = InferenceSlots(int(os.getenv("MODEL_CONCURRENCY_LIMIT", "0")))
 
 
 @asynccontextmanager
@@ -84,7 +87,9 @@ async def predict(
     inputs = [await read_image(image) for image in images]
     started_at = time.perf_counter()
     try:
-        result = await asyncio.to_thread(backend.predict, subject_id, study_id, inputs)
+        result = await asyncio.to_thread(slots.run, backend.predict, subject_id, study_id, inputs)
+    except InferenceBusy as error:
+        raise HTTPException(status_code=429, detail=str(error)) from error
     except ValueError as error:
         raise HTTPException(status_code=422, detail=str(error)) from error
     elapsed_ms = round((time.perf_counter() - started_at) * 1000, 3)
@@ -106,7 +111,9 @@ async def gradcam(
 ) -> dict:
     image_input = await read_image(image)
     try:
-        result = await asyncio.to_thread(backend.gradcam, image_input, class_id)
+        result = await asyncio.to_thread(slots.run, backend.gradcam, image_input, class_id)
+    except InferenceBusy as error:
+        raise HTTPException(status_code=429, detail=str(error)) from error
     except ValueError as error:
         raise HTTPException(status_code=422, detail=str(error)) from error
     return {

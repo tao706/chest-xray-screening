@@ -13,19 +13,24 @@
   "manifestSelfHashExcluded": true,
   "files": [
     {
+      "path": ".dockerignore",
+      "bytes": 200,
+      "sha256": "0518ed6242eeddfbb4493ab2b363b991d7a8c1969505f0e910ed6db53065c3f0"
+    },
+    {
       "path": ".gitattributes",
       "bytes": 8,
       "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
     },
     {
       "path": ".github/workflows/ci.yml",
-      "bytes": 2780,
-      "sha256": "4187ef6b78a9ebf943a3235b71a18db96da369cb750cc8bc65254a8b63aa3e0e"
+      "bytes": 4287,
+      "sha256": "d8f969a3e10608894ec1543f1230b05db17e529eae9dd3d736b64ebd20169601"
     },
     {
       "path": ".gitignore",
-      "bytes": 402,
-      "sha256": "f6887fcb7a899622cb2ea8d1c15c86e8d5db2cda63ce247754bc227edbfc3d25"
+      "bytes": 417,
+      "sha256": "73c93c3179f9cefda755746f1d5e28bef1992cca178ac4ab979435c1832fb172"
     },
     {
       "path": "LICENSE",
@@ -34,13 +39,18 @@
     },
     {
       "path": "README.md",
-      "bytes": 14333,
-      "sha256": "59ef0a608048243aedecf267ed728bea67a3bc916535f81b1e804ef550207e29"
+      "bytes": 14762,
+      "sha256": "65390df810b8cf30c088e68f915b446a32b98703fa53a6e8426ddc31a72cc098"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
       "bytes": 3781,
       "sha256": "3b3402755580ede3a3a4a22a47600072254f12280f426c46f3b4316e2a34bd65"
+    },
+    {
+      "path": "compose.yaml",
+      "bytes": 3815,
+      "sha256": "6a0ca7339488aa521ed083be50054c76eca818d3264e7cfc86c721b0cbbec6c5"
     },
     {
       "path": "database/README.md",
@@ -56,6 +66,36 @@
       "path": "datasets/.gitkeep",
       "bytes": 0,
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "deploy/.env.example",
+      "bytes": 247,
+      "sha256": "6e61d52433d6bcd7379d70285eed6e8173dff2592c3c8ab69ae97ba4930a95f6"
+    },
+    {
+      "path": "deploy/Caddyfile",
+      "bytes": 126,
+      "sha256": "238082ef0b900f08a25fc89fec11d3be3c61068f8b38ded1bebf23048c1b4435"
+    },
+    {
+      "path": "deploy/Dockerfile.inference",
+      "bytes": 821,
+      "sha256": "8cdff9f08e18c33d108f2f54a5876a9f7fd741d266afe522e4a9368bf1f6fda4"
+    },
+    {
+      "path": "deploy/Dockerfile.web",
+      "bytes": 1021,
+      "sha256": "ad20997b58c36d21ebbbb1e1f7b339864ca9d27bb0b2372ef437012b5fd3fb3d"
+    },
+    {
+      "path": "deploy/configure.mjs",
+      "bytes": 831,
+      "sha256": "25b07806d55723118aba7d1024f9c47f0c6412bd1c2f976754588cc2a1ebcd27"
+    },
+    {
+      "path": "deploy/init-demo.mjs",
+      "bytes": 995,
+      "sha256": "951fe9de85c077d6f91446add2749ef3992030da1300ec93e34eb472d660da00"
     },
     {
       "path": "docs/ACCEPTANCE_REPORT.md",
@@ -128,6 +168,11 @@
       "sha256": "23b9bb902875343009b86d03b0360e5f93f0ff568a23ecae6ea303062eeadb1f"
     },
     {
+      "path": "docs/ONLINE_DEMO.md",
+      "bytes": 4732,
+      "sha256": "bbe21780d0014eb924fd754b0387ad6c80ab78f23caeb786b164cd16468b4d3e"
+    },
+    {
       "path": "docs/OPEN_SOURCE_READINESS.md",
       "bytes": 1806,
       "sha256": "69094f069dfd1cc1ad4b3013101a2ff18366b8564e2f9b6110a325d22cfe1524"
@@ -144,8 +189,8 @@
     },
     {
       "path": "docs/RELEASE_FILES.json",
-      "bytes": 2934,
-      "sha256": "66b7dd1c7d7b54c0d0c0f983cf1713db3c31d4bfc1949147523925344807c874"
+      "bytes": 3182,
+      "sha256": "b67e1542bbb028c38c982f3bfb436823c8859e4054125276c3aabd85ec6ba16e"
     },
     {
       "path": "docs/VERSION_MAINTENANCE.md",
@@ -258,6 +303,11 @@
       "sha256": "cb28a57499dcb460024134d4c222dfbcf2501e591409f0ae7545af60adf2ae57"
     },
     {
+      "path": "frontend/src/components/DemoNotice.vue",
+      "bytes": 1304,
+      "sha256": "cc1816e475888b936cd7d56b1b079bdfead6b7e003d674b913c27394a76672f1"
+    },
+    {
       "path": "frontend/src/components/ImageUploader.vue",
       "bytes": 9648,
       "sha256": "4776319fda72a91a279784714377a9ce32dc04c2ba0c74f4e914256b16320fcc"
@@ -284,8 +334,8 @@
     },
     {
       "path": "frontend/src/layouts/AppLayout.vue",
-      "bytes": 4069,
-      "sha256": "74a550f94aa0ef69a5824c0320830fdc7ef928ed8bf9fc26834cc7b033bed3f2"
+      "bytes": 4179,
+      "sha256": "cd6d7501e8bb56fd1b2664af2721dc8b4c077df4b900ad124f0cdf5d11abd514"
     },
     {
       "path": "frontend/src/main.ts",
@@ -454,8 +504,8 @@
     },
     {
       "path": "inference/main.py",
-      "bytes": 4781,
-      "sha256": "751453f941f049b46068fd9cfd523ddadf8d88aad339f799d103a708da917de3"
+      "bytes": 5179,
+      "sha256": "20b398f49a5dbdacaec70e363ae303a62181b74a6b62f1a31f9f7de8c88cf8bf"
     },
     {
       "path": "inference/model_runtime/__init__.py",
@@ -466,6 +516,11 @@
       "path": "inference/model_runtime/classes.py",
       "bytes": 1020,
       "sha256": "a50af9de3f5d182b49296a3b1fbdcba7d27ef47124699b0093711ed57c074787"
+    },
+    {
+      "path": "inference/model_runtime/concurrency.py",
+      "bytes": 556,
+      "sha256": "e6318cf8c362cc1969ef2d8a2df3ed87d0360388fa12b0f801368f0292e7dd84"
     },
     {
       "path": "inference/model_runtime/factory.py",
@@ -589,8 +644,8 @@
     },
     {
       "path": "package.json",
-      "bytes": 1315,
-      "sha256": "f3dfc2070e74236c98f555860c218bc206f6f0cef4ed993d19cf6246351f30d8"
+      "bytes": 1368,
+      "sha256": "8aaad8c08f278d266a71357a12ed0624ac99ca46d4b173c9c65f86eaf30e3b78"
     },
     {
       "path": "scripts/acceptance-test.mjs",
@@ -611,6 +666,16 @@
       "path": "scripts/check-model.ps1",
       "bytes": 308,
       "sha256": "db91cd3d3b321ea5f12f29e111085b97d235a6c6a8c60223b7d836e9e2f62d53"
+    },
+    {
+      "path": "scripts/ci-concurrency.py",
+      "bytes": 1130,
+      "sha256": "0677d714917076dee412d16dbb8d4be7164acf8bbe9e0fff14baea82ee362b68"
+    },
+    {
+      "path": "scripts/ci-demo.mjs",
+      "bytes": 1997,
+      "sha256": "1c7a50c7a91591d6b98246c12cf12cae945808eab273b42de02b2a433d50432f"
     },
     {
       "path": "scripts/ci-download-model.py",
@@ -679,8 +744,8 @@
     },
     {
       "path": "scripts/release-preflight.mjs",
-      "bytes": 2899,
-      "sha256": "eaa2ae4b3341f40a87aab7d9e71cea464966f98b36e105b16091f036ccc1c8fa"
+      "bytes": 2939,
+      "sha256": "dc74655cbe33924fc7f4106dcb3e10aa1f7c8f136403f68b532168c0bd0e6ae5"
     },
     {
       "path": "scripts/setup-system.ps1",
@@ -754,8 +819,8 @@
     },
     {
       "path": "server/src/app.ts",
-      "bytes": 3603,
-      "sha256": "391a532e50a0cfd912502d4482187199b610a3a7d850b9101b01c02d35538e5c"
+      "bytes": 4057,
+      "sha256": "4142a17599ff3664dc13e68eeca9578a416fc9f4e1725f77c8607d36700fe4ab"
     },
     {
       "path": "server/src/config/database.ts",
@@ -778,9 +843,14 @@
       "sha256": "736455949b6a7c8b85417d7d785ebe9011a6b10b11d018016d10aaddae78bcd9"
     },
     {
+      "path": "server/src/middleware/demo.ts",
+      "bytes": 3559,
+      "sha256": "858ee9f4aef75be29dabb859cd96ca0f9917aabd430355868f1f3a93095dcf9a"
+    },
+    {
       "path": "server/src/middleware/upload.ts",
-      "bytes": 469,
-      "sha256": "25350f5b6101b3000e2b1e403d55508a2d11dbcdb5d379710d44d2f766c58907"
+      "bytes": 1037,
+      "sha256": "e84881b0231e496326e4632ed20f2883fc729a4e5d34770727677d80913270f2"
     },
     {
       "path": "server/src/routes/assistant.routes.ts",

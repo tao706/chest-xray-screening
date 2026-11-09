@@ -55,7 +55,16 @@
     "docs/images/image-controls.png",
     "docs/images/assistant.png",
     "docs/images/review-draft.png",
-    "docs/MODEL_DOWNLOAD.md"
+    "docs/MODEL_DOWNLOAD.md",
+    "compose.yaml",
+    ".dockerignore",
+    "docs/ONLINE_DEMO.md",
+    "deploy/.env.example",
+    "deploy/Caddyfile",
+    "deploy/configure.mjs",
+    "deploy/Dockerfile.inference",
+    "deploy/Dockerfile.web",
+    "deploy/init-demo.mjs"
   ],
   "trees": [
     {

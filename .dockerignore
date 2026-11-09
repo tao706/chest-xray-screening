@@ -1,0 +1,17 @@
+.git
+**/node_modules
+**/dist
+**/.env
+**/.env.*
+**/.venv*
+**/.python_packages
+**/__pycache__
+**/*.pyc
+**/*.log
+.runtime
+inference/weights
+server/uploads
+server/exports
+server/logs
+datasets
+docs/images

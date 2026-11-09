@@ -16,6 +16,7 @@
     "configure": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/configure-system.ps1",
     "db:init": "node scripts/local-database.mjs init",
     "models:prepare": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/prepare-models.ps1",
-    "test:bootstrap": "node --test scripts/local-database.test.mjs"
+    "test:bootstrap": "node --test scripts/local-database.test.mjs",
+    "test:demo": "node --test scripts/ci-demo.mjs"
   }
 }
