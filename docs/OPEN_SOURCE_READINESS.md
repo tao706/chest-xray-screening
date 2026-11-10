@@ -24,4 +24,4 @@
 当前尚未发布任何仓库，也未确认模型和数据的再分发授权。
 
 
-公开样例例外：examples/chest-xrays内两张文件按来源页CC0 1.0提供，原作者与来源见该目录README和SOURCES.json。不授予训练数据或模型权重的额外权利。
+公开样例例外：examples/chest-xrays内三张文件按来源页CC0 1.0提供，原作者与来源见该目录README和SOURCES.json。不授予训练数据或模型权重的额外权利。

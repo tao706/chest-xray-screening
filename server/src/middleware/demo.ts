@@ -8,7 +8,7 @@ import {database} from "../config/database.js";
 
 export const demoEnabled=process.env.DEMO_MODE==="true";
 export const demoSamplesRoot=path.resolve(path.dirname(fileURLToPath(import.meta.url)),"../../../examples/chest-xrays");
-export const demoSampleNames=["chest-pa-01.jpg","chest-pa-02.png"];
+export const demoSampleNames=["chest-pa-01.jpg","chest-pa-02.png","chest-pa-03-pneumonia.jpg"];
 const hashes=new Set(demoEnabled?demoSampleNames.map(name=>createHash("sha256").update(readFileSync(path.join(demoSamplesRoot,name))).digest("hex")):[]);
 export function approvedDemoImage(buffer:Buffer){return hashes.has(createHash("sha256").update(buffer).digest("hex"));}
 export class DemoQuota {

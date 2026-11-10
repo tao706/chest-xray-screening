@@ -13,4 +13,4 @@
 项目MIT许可不代表对模型、数据或第三方材料再分发权限的确认。公开发布前以LICENSING_STATUS.md和实际发行文件清单完成核查。
 
 
-公开样例例外：examples/chest-xrays内两张文件按来源页CC0 1.0提供，原作者与来源见该目录README和SOURCES.json。不授予训练数据或模型权重的额外权利。
+公开样例例外：examples/chest-xrays内三张文件按来源页CC0 1.0提供，原作者与来源见该目录README和SOURCES.json。不授予训练数据或模型权重的额外权利。

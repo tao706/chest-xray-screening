@@ -47,6 +47,7 @@
     "docs/OPEN_SOURCE_READINESS.md",
     "examples/chest-xrays/chest-pa-01.jpg",
     "examples/chest-xrays/chest-pa-02.png",
+    "examples/chest-xrays/chest-pa-03-pneumonia.jpg",
     "examples/chest-xrays/README.md",
     "examples/chest-xrays/SOURCES.json",
     "docs/INPUT_VALIDATION.md",

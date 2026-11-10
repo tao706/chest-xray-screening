@@ -28,5 +28,21 @@
     "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
     "modifications": "None; original file bytes retained",
     "checked_on": "2026-11-07"
+  },
+  {
+    "file": "chest-pa-03-pneumonia.jpg",
+    "author": "Mikael Häggström",
+    "source": "https://commons.wikimedia.org/wiki/File:X-ray_of_lobar_pneumonia.jpg",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/5/51/X-ray_of_lobar_pneumonia.jpg",
+    "source_description": "Chest radiograph described by the source page as right middle lobe lobar pneumonia; the page records written informed consent for online publication.",
+    "sha1": "f8e927b2bfc4246de8c2356b5495818a429afbbe",
+    "width": 3027,
+    "height": 2407,
+    "bytes": 3155438,
+    "sha256": "cae983ca0ed90b161ff55a49915f563939cdee792efcc98788e5749ae75e6f76",
+    "license": "CC0-1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "modifications": "None; original file bytes retained",
+    "checked_on": "2026-11-10"
   }
 ]

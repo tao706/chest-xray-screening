@@ -4,7 +4,7 @@
 
 `node scripts/prepare-publication.mjs <全新目标目录>` 根据RELEASE_FILES.json白名单复制源码与当前文档，生成RELEASE_MANIFEST.json记录每个文件大小和SHA-256。目标必须位于工程外且不存在，命令不覆盖源工程或旧目标。
 
-这是待复核源码集合，不是承诺包含所有运行材料的即用包。数据库、凭据和权重由使用者分别准备；examples/chest-xrays白名单中的两张CC0图片随源码提供。
+这是待复核源码集合，不是承诺包含所有运行材料的即用包。数据库、凭据和权重由使用者分别准备；examples/chest-xrays白名单中的三张CC0图片随源码提供。
 
 ## 本次本地关卡
 

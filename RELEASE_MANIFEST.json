@@ -39,18 +39,18 @@
     },
     {
       "path": "README.md",
-      "bytes": 14762,
-      "sha256": "65390df810b8cf30c088e68f915b446a32b98703fa53a6e8426ddc31a72cc098"
+      "bytes": 14497,
+      "sha256": "d660af7a21dcb578ec720d52e8e226e11f45dcd78355c1b5cee7b6ff5a48b292"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
-      "bytes": 3781,
-      "sha256": "3b3402755580ede3a3a4a22a47600072254f12280f426c46f3b4316e2a34bd65"
+      "bytes": 3870,
+      "sha256": "d6539ae12f4d10977ebbec42f17bf6bc280393bdf23334eab919c8ae2ee73225"
     },
     {
       "path": "compose.yaml",
-      "bytes": 3815,
-      "sha256": "6a0ca7339488aa521ed083be50054c76eca818d3264e7cfc86c721b0cbbec6c5"
+      "bytes": 3841,
+      "sha256": "f460bc3eadade05cf3002a29420a84a995f0e4eccb310003120b800d86d0c4db"
     },
     {
       "path": "database/README.md",
@@ -69,18 +69,18 @@
     },
     {
       "path": "deploy/.env.example",
-      "bytes": 247,
-      "sha256": "6e61d52433d6bcd7379d70285eed6e8173dff2592c3c8ab69ae97ba4930a95f6"
+      "bytes": 276,
+      "sha256": "ae97f65e58b3ff40cc2fab8b4090af9900d595f60ffd192bc607a0cb5bbd42b6"
     },
     {
       "path": "deploy/Caddyfile",
-      "bytes": 126,
-      "sha256": "238082ef0b900f08a25fc89fec11d3be3c61068f8b38ded1bebf23048c1b4435"
+      "bytes": 240,
+      "sha256": "0cb56299f8243ebeeae32975f077ec544c16ded758295821263c8cf893c74eb8"
     },
     {
       "path": "deploy/Dockerfile.inference",
-      "bytes": 821,
-      "sha256": "8cdff9f08e18c33d108f2f54a5876a9f7fd741d266afe522e4a9368bf1f6fda4"
+      "bytes": 854,
+      "sha256": "5b0ab0a9faced732e68fff3e599d9a35f1b1351aaf7f9277d27b3455337a72c1"
     },
     {
       "path": "deploy/Dockerfile.web",
@@ -124,13 +124,13 @@
     },
     {
       "path": "docs/FEATURE_WALKTHROUGH.md",
-      "bytes": 2362,
-      "sha256": "4c20c360881c27b4663e2f1d5e608bba2955c52c25a0f687d9628c3e7f7b4290"
+      "bytes": 2440,
+      "sha256": "5db25b60b3b116ffe75259fbcfc641a863d91524d0106afde450b68b8a60eaca"
     },
     {
       "path": "docs/INPUT_VALIDATION.md",
-      "bytes": 1963,
-      "sha256": "2fae8c1960f7652111da8cf203d1f8084b2043d0dc5f28edc939f32938530506"
+      "bytes": 2049,
+      "sha256": "4820923119b727f1dd58582ed689b368a93b79774b24e8b4b0c5bffda74aec99"
     },
     {
       "path": "docs/INSTALL_VERIFICATION.md",
@@ -145,12 +145,12 @@
     {
       "path": "docs/LICENSE_SCOPE.md",
       "bytes": 1276,
-      "sha256": "e22cc9119ba049023ecf78d85a992f7b40a2ee6813fcc6563b6dee090b0133fe"
+      "sha256": "734005d694919636b7882f4678b13da98c55065fd6086f19a71b40c4099c44ec"
     },
     {
       "path": "docs/LICENSING_STATUS.md",
       "bytes": 2391,
-      "sha256": "56f918934593c1a117f53da0a189354cb330940d28db3335aa99fefabc388886"
+      "sha256": "2032c4bfbbfece598bf860c9f2879b67fb51906a5c1137f2c1319de3cbcebe24"
     },
     {
       "path": "docs/LLM_SETUP.md",
@@ -169,18 +169,18 @@
     },
     {
       "path": "docs/ONLINE_DEMO.md",
-      "bytes": 4732,
-      "sha256": "bbe21780d0014eb924fd754b0387ad6c80ab78f23caeb786b164cd16468b4d3e"
+      "bytes": 4801,
+      "sha256": "438bdca3943813a756c75651d816338b827e0d251dbab035dd9b7cb0599e0b7b"
     },
     {
       "path": "docs/OPEN_SOURCE_READINESS.md",
       "bytes": 1806,
-      "sha256": "69094f069dfd1cc1ad4b3013101a2ff18366b8564e2f9b6110a325d22cfe1524"
+      "sha256": "f8d7875be8292863aed880997834e17245a889c532b555416c37d625f3f97662"
     },
     {
       "path": "docs/PUBLICATION_CHECKLIST.md",
       "bytes": 2108,
-      "sha256": "7c71405e281c57ad7acad38474710378c9d30df90fd00edecf0e23a33bb71d90"
+      "sha256": "82e7ca35cc859e2432f15921e878e8d017673de6a5cc9ccc4fc9cfd451d06088"
     },
     {
       "path": "docs/README.md",
@@ -189,8 +189,8 @@
     },
     {
       "path": "docs/RELEASE_FILES.json",
-      "bytes": 3182,
-      "sha256": "b67e1542bbb028c38c982f3bfb436823c8859e4054125276c3aabd85ec6ba16e"
+      "bytes": 3237,
+      "sha256": "b901a6b09a1b58ebd8c19f2514db79ce34684e3695b363516caa0e8a909c090e"
     },
     {
       "path": "docs/VERSION_MAINTENANCE.md",
@@ -229,13 +229,13 @@
     },
     {
       "path": "examples/chest-xrays/README.md",
-      "bytes": 1693,
-      "sha256": "cb5a8e40ebfac2f15786d209ad4f048178d6c5bb2ec8ace5cbfddba5d5177eaf"
+      "bytes": 2223,
+      "sha256": "b74068aaa4346fdf56ce58646222b50a86f7efd1b51f76096fb312aa96b2e45b"
     },
     {
       "path": "examples/chest-xrays/SOURCES.json",
-      "bytes": 1391,
-      "sha256": "6d4f9c312960614d7a497b08be05bb26d782d62a5fb914318177bca288703bb9"
+      "bytes": 2246,
+      "sha256": "24c9090904b3983557ccbdcb483aab175006bccf3d75ebbc1c1b6365b85b6b5a"
     },
     {
       "path": "examples/chest-xrays/chest-pa-01.jpg",
@@ -304,8 +304,8 @@
     },
     {
       "path": "frontend/src/components/DemoNotice.vue",
-      "bytes": 1304,
-      "sha256": "cc1816e475888b936cd7d56b1b079bdfead6b7e003d674b913c27394a76672f1"
+      "bytes": 1490,
+      "sha256": "f7a05756e1c33bb7244ad8c83f2ba102746d931e053f19d4b1ba15731aefbe70"
     },
     {
       "path": "frontend/src/components/ImageUploader.vue",
@@ -674,8 +674,8 @@
     },
     {
       "path": "scripts/ci-demo.mjs",
-      "bytes": 1997,
-      "sha256": "1c7a50c7a91591d6b98246c12cf12cae945808eab273b42de02b2a433d50432f"
+      "bytes": 2017,
+      "sha256": "6aa1bcd2f1831baac9aeba8d0d063b958a55f3437733da6a831350d2834c8dbd"
     },
     {
       "path": "scripts/ci-download-model.py",
@@ -844,8 +844,8 @@
     },
     {
       "path": "server/src/middleware/demo.ts",
-      "bytes": 3559,
-      "sha256": "858ee9f4aef75be29dabb859cd96ca0f9917aabd430355868f1f3a93095dcf9a"
+      "bytes": 3433,
+      "sha256": "c7931000c24d1f725eb5e6acd116ab0e43d9978ce2c5f1585806cbb21f721996"
     },
     {
       "path": "server/src/middleware/upload.ts",
@@ -966,6 +966,11 @@
       "path": "server/tsconfig.json",
       "bytes": 335,
       "sha256": "25b3f53b3dc65b56e9d83894345646b7769322884335a952f58aaf3c6f2c00da"
+    },
+    {
+      "path": "examples/chest-xrays/chest-pa-03-pneumonia.jpg",
+      "bytes": 3155438,
+      "sha256": "cae983ca0ed90b161ff55a49915f563939cdee792efcc98788e5749ae75e6f76"
     }
   ]
 }
