@@ -6,6 +6,7 @@ COPY inference/requirements-win-cpu.lock.txt /tmp/requirements.txt
 RUN pip install -r /tmp/requirements.txt --extra-index-url https://download.pytorch.org/whl/cpu && pip check
 COPY inference/main.py .
 COPY inference/model_runtime model_runtime
+COPY inference/training training
 COPY scripts/download-model.py scripts/download-image-gate.py scripts/ci-download-model.py /app/scripts/
 COPY examples /app/examples
 RUN useradd --uid 10001 --create-home inference && mkdir -p weights

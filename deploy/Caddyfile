@@ -1,4 +1,13 @@
+{
+    default_sni {$CADDY_SITE}
+}
+
 {$CADDY_SITE} {
+    tls {
+        issuer acme {
+            profile shortlived
+        }
+    }
     request_body {
         max_size 12MB
     }
