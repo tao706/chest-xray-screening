@@ -27,7 +27,6 @@ const quota=new DemoQuota();
 function reject(response:Response,code:string,message:string,status=403){response.status(status).json({success:false,code,message});}
 export function demoTraffic(request:Request,response:Response,next:NextFunction){
     if(!demoEnabled||!request.path.startsWith("/api/")||request.path==="/api/health")return next();
-    if(/^\/api\/auth\/register\/?$/.test(request.path))return reject(response,"DEMO_READ_ONLY","演示环境不开放注册，请使用演示账号。");
     if(!quota.allow("traffic:"+request.ip,120,60000))return reject(response,"DEMO_RATE_LIMIT","演示访问频率较高，请稍后重试。",429);
     next();
 }

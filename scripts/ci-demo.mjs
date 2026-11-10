@@ -21,8 +21,8 @@ test('only exact approved sample bytes are accepted',async()=>{
   assert.equal(approvedDemoImage(Buffer.from('other image')),false);
 });
 function response(){return {statusCode:0,payload:null,status(code){this.statusCode=code;return this;},json(value){this.payload=value;return this;}};}
-test('demo traffic prevents registration',()=>{
-  const res=response();demoTraffic({path:'/api/auth/register',ip:'test'},res,()=>assert.fail());assert.equal(res.statusCode,403);
+test('demo traffic delegates registration to auth configuration',()=>{
+  let called=false;demoTraffic({path:'/api/auth/register',ip:'test'},response(),()=>{called=true;});assert.equal(called,true);
 });
 test('demo policy blocks destructive and batch operations',async()=>{
   for(const [method,path] of [['DELETE','/studies/example'],['POST','/tasks'],['PUT','/assistant/reviews/1']]){
