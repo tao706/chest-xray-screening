@@ -1,10 +1,10 @@
 <script setup lang="ts">import { computed, onMounted, ref, watch } from "vue";
 import { storeToRefs } from "pinia";
 import { useRoute } from "vue-router";
-import { getGradcam, getStudy, getStudyImageUrl } from "@/api/studies";
+import { getGradcam, getImagePredictions, getStudy, getStudyImageUrl } from "@/api/studies";
 import { useImageViewport } from "@/composables/useImageViewport";
 import { useCurrentStudyStore } from "@/state/currentStudy";
-import type { PredictionResult } from "@/types/prediction";
+import type { Prediction, PredictionResult } from "@/types/prediction";
 const route = useRoute();
 const currentStudyStore = useCurrentStudyStore();
 const { images: currentImages, prediction: currentPrediction } = storeToRefs(currentStudyStore);
@@ -14,6 +14,11 @@ const errorMessage = ref("");
 const threshold = ref(0.5);
 const sortByProbability = ref(false);
 const selectedImageIndex = ref(0);
+const imagePredictions = ref<Prediction[]>([]);
+const predictionsLoading = ref(false);
+const predictionsError = ref("");
+const imageScores = new Map<number, Prediction[]>();
+let predictionRequest = 0;
 const brightness = ref(100);
 const contrast = ref(100);
 const { stage, zoom, panX, panY, isDragging, zoomIn, zoomOut, resetViewport, onWheel, onPointerDown, onPointerMove, onPointerUp, } = useImageViewport();
@@ -24,8 +29,10 @@ const heatmapLoading = ref(false);
 const heatmapError = ref("");
 const heatmapDataUrl = ref("");
 const heatmapIsMock = ref(false);
+const heatmapCache = new Map<string, { dataUrl: string; isMock: boolean }>();
+let heatmapRequest = 0;
 const predictions = computed(() => {
-    const rows = [...(result.value?.predictions ?? [])];
+    const rows = [...imagePredictions.value];
     return sortByProbability.value
         ? rows.sort((a, b) => b.probability - a.probability)
         : rows.sort((a, b) => a.class_id - b.class_id);
@@ -54,6 +61,10 @@ async function loadResult() {
     try {
         const studyId = String(route.params.studyId);
         result.value = await getStudy(studyId);
+        selectedImageIndex.value = 0;
+        imageScores.clear();
+        heatmapCache.clear();
+        void loadImagePredictions();
         resetViewport();
         selectedClassId.value =
             [...result.value.predictions].sort((a, b) => b.probability - a.probability)[0]?.class_id ?? 1;
@@ -65,31 +76,73 @@ async function loadResult() {
         loading.value = false;
     }
 }
+async function loadImagePredictions() {
+    const requestId = ++predictionRequest;
+    const image = selectedStoredImage.value;
+    imagePredictions.value = [];
+    predictionsError.value = "";
+    if (!result.value || !image) return;
+    const cached = imageScores.get(image.id);
+    if (cached) {
+        imagePredictions.value = cached;
+        predictionsLoading.value = false;
+        return;
+    }
+    predictionsLoading.value = true;
+    try {
+        const scores = await getImagePredictions(result.value.study_id, image.id);
+        if (requestId !== predictionRequest) return;
+        imageScores.set(image.id, scores);
+        imagePredictions.value = scores;
+    } catch (error) {
+        if (requestId === predictionRequest) predictionsError.value = error instanceof Error ? error.message : "当前图片评分加载失败";
+    } finally {
+        if (requestId === predictionRequest) predictionsLoading.value = false;
+    }
+}
 async function loadHeatmap() {
     const image = selectedStoredImage.value;
     if (!result.value || !image)
         return void (heatmapError.value = "当前图片没有持久化记录，无法生成解释图");
+    const cacheKey = `${image.id}:${selectedClassId.value}`;
+    const cached = heatmapCache.get(cacheKey);
+    if (cached) {
+        heatmapDataUrl.value = cached.dataUrl;
+        heatmapIsMock.value = cached.isMock;
+        heatmapVisible.value = true;
+        heatmapError.value = "";
+        return;
+    }
+    const requestId = ++heatmapRequest;
     heatmapLoading.value = true;
     heatmapError.value = "";
     try {
         const data = await getGradcam(result.value.study_id, image.id, selectedClassId.value);
+        if (requestId !== heatmapRequest) return;
         heatmapDataUrl.value = `data:${data.heatmap_mime_type};base64,${data.heatmap_base64}`;
         heatmapIsMock.value = data.is_mock;
+        heatmapCache.set(cacheKey, { dataUrl: heatmapDataUrl.value, isMock: data.is_mock });
         heatmapVisible.value = true;
     }
     catch (error) {
-        heatmapError.value = error instanceof Error ? error.message : "热力图生成失败";
+        if (requestId !== heatmapRequest) return;
+        heatmapError.value = error instanceof Error && error.name === "TimeoutError"
+            ? "关注区域生成超时，请稍后重试。"
+            : error instanceof Error ? error.message : "关注区域生成失败，请稍后重试。";
     }
     finally {
-        heatmapLoading.value = false;
+        if (requestId === heatmapRequest) heatmapLoading.value = false;
     }
 }
 watch([selectedImageIndex, selectedClassId], () => {
+    heatmapRequest++;
+    heatmapLoading.value = false;
     heatmapDataUrl.value = "";
     heatmapError.value = "";
     heatmapIsMock.value = false;
 });
 watch(selectedImageIndex, resetViewport);
+watch(selectedImageIndex, loadImagePredictions);
 onMounted(loadResult);
 </script>
 
@@ -287,7 +340,7 @@ onMounted(loadResult);
         <article class="panel result-predictions-panel">
           <div class="panel-heading">
             <div>
-              <h2>{{ predictions.length }}类完整评分</h2>
+              <h2>第{{ selectedImageIndex + 1 }}张图片 · 14类评分</h2>
               <p>蓝色项目达到显示阈值，评分不等同于患病概率</p>
             </div>
             <button
@@ -308,7 +361,9 @@ onMounted(loadResult);
             <strong>{{ threshold.toFixed(2) }}</strong>
             <input v-model.number="threshold" type="range" min="0" max="1" step="0.01" />
           </label>
-          <div class="result-interpretation" role="status" aria-live="polite">
+          <div v-if="predictionsLoading" class="result-interpretation" role="status">正在加载当前图片评分…</div>
+          <div v-else-if="predictionsError" class="result-interpretation" role="alert">{{ predictionsError }}</div>
+          <div v-else-if="predictions.length" class="result-interpretation" role="status" aria-live="polite">
             <strong>{{ positiveCount ? `${positiveCount} 项达到当前显示阈值` : "暂无项目达到当前显示阈值" }}</strong>
             <p>{{ positiveCount ? "突出显示用于辅助复核，不代表已经确诊。调整阈值不会改变原始评分。" : "低于阈值不代表正常，仍需结合原始影像和正式报告复核。" }}</p>
           </div>

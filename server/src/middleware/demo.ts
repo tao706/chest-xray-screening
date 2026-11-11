@@ -35,7 +35,7 @@ export async function demoPolicy(request:Request,response:Response,next:NextFunc
     const mutation=!["GET","HEAD","OPTIONS"].includes(request.method);
     const allowedPost=request.method==="POST"&&["/studies/predict","/studies/validate-image","/assistant/chat"].includes(request.path);
     if(mutation&&!allowedPost)return reject(response,"DEMO_READ_ONLY","演示环境不开放批量任务、删除及草稿保存；完整功能请在本地运行。");
-    const expensive=allowedPost||request.path.endsWith("/gradcam");
+    const expensive=allowedPost||request.path.endsWith("/gradcam")||request.path.endsWith("/predictions");
     if(!expensive)return next();
     if(!quota.allow("expensive:"+request.ip,30,3600000)||!quota.allow("expensive:global",120,3600000))return reject(response,"DEMO_RATE_LIMIT","演示分析次数已达限额，请稍后再试。",429);
     const release=quota.acquire();

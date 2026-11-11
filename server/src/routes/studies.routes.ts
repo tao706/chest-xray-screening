@@ -26,6 +26,32 @@ studiesRouter.get("/:studyId/images/:imageId", async (request, response, next) =
         next(error);
     }
 });
+studiesRouter.get("/:studyId/images/:imageId/predictions", async (request, response, next) => {
+    const imageId = Number(request.params.imageId);
+    if (!Number.isInteger(imageId) || imageId < 1) {
+        response.status(400).json({ success: false, code: "INVALID_IMAGE_ID", message: "图片编号不合法" });
+        return;
+    }
+    try {
+        const [rows] = await database.execute<RowDataPacket[]>(`SELECT i.stored_path, i.mime_type, i.original_name, s.subject_id, s.study_id, s.model_version
+         FROM study_images i JOIN studies s ON s.id = i.study_pk
+         WHERE s.study_id = ? AND i.id = ? LIMIT 1`, [request.params.studyId, imageId]);
+        const image = rows[0];
+        if (!image?.stored_path || !isReadableStudyImagePath(String(image.stored_path))) {
+            response.status(404).json({ success: false, code: "IMAGE_NOT_FOUND", message: "未找到已保存的检查图片" });
+            return;
+        }
+        const result = await requestInference(String(image.subject_id), String(image.study_id), [{
+            originalname: String(image.original_name),
+            mimetype: String(image.mime_type),
+            buffer: await readFile(String(image.stored_path))
+        } as Express.Multer.File]);
+        response.json({ success: true, data: result.predictions, message: "当前图片评分加载成功" });
+    }
+    catch (error) {
+        next(error);
+    }
+});
 studiesRouter.get("/:studyId/gradcam", async (request, response, next) => {
     const classId = Number(request.query.class_id);
     const imageId = Number(request.query.image_id);

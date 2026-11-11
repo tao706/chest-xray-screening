@@ -1,6 +1,9 @@
 from __future__ import annotations
 
 from collections.abc import Sequence
+from collections import OrderedDict
+from hashlib import sha256
+from threading import Lock
 from io import BytesIO
 from pathlib import Path
 
@@ -52,6 +55,9 @@ class TeamModelAdapter:
         self.model_version = metadata.model_version
         self.input_size = metadata.input_size
         self.transform = build_transform(metadata.input_size, False, metadata.mean, metadata.std)
+        self._gradcam_lock = Lock()
+        self._gradcam_cache = OrderedDict()
+        self._gradcam_cache_bytes = 0
 
     def predict(self, images: Sequence[bytes]) -> Sequence[float]:
         if not images:
@@ -69,24 +75,39 @@ class TeamModelAdapter:
     def gradcam(self, image: bytes, class_id: int) -> tuple[str, bytes]:
         if class_id < 1 or class_id > self.model.num_classes:
             raise ValueError(f"class_id must be in 1..{self.model.num_classes}")
+        key = (sha256(image).digest(), class_id)
+        with self._gradcam_lock:
+            cached = self._gradcam_cache.get(key)
+            if cached is not None:
+                self._gradcam_cache.move_to_end(key)
+                return cached
+            result = self._generate_gradcam(image, class_id)
+            self._gradcam_cache[key] = result
+            self._gradcam_cache_bytes += len(result[1])
+            while self._gradcam_cache_bytes > 16 * 1024 * 1024:
+                _, removed = self._gradcam_cache.popitem(last=False)
+                self._gradcam_cache_bytes -= len(removed[1])
+            return result
+
+    def _generate_gradcam(self, image: bytes, class_id: int) -> tuple[str, bytes]:
         source = _decode_image(image)
         tensor = self.transform(source).unsqueeze(0).to(self.torch_device)
         captured: dict[str, torch.Tensor] = {}
 
         def capture_activation(_module, _inputs, output):
-            captured["activation"] = output
-            output.retain_grad()
+            if output.requires_grad:
+                captured["activation"] = output
 
         handle = self.model.gradcam_target_layer.register_forward_hook(capture_activation)
         try:
-            self.model.zero_grad(set_to_none=True)
             with torch.enable_grad():
                 logits = self.model(tensor)
-                logits[0, class_id - 1].backward()
-            activation = captured.get("activation")
-            if activation is None or activation.grad is None:
-                raise RuntimeError("Grad-CAM target layer did not produce gradients")
-            weights = activation.grad.mean(dim=(2, 3), keepdim=True)
+                activation = captured.get("activation")
+                if activation is None:
+                    raise RuntimeError("Grad-CAM target layer did not produce activations")
+                gradient, = torch.autograd.grad(logits[0, class_id - 1], activation)
+            activation = activation.detach()
+            weights = gradient.mean(dim=(2, 3), keepdim=True)
             cam = torch.relu((weights * activation).sum(dim=1, keepdim=True))
             cam = torch.nn.functional.interpolate(cam, size=(self.input_size, self.input_size), mode="bilinear", align_corners=False)
             cam = cam[0, 0]
@@ -95,6 +116,7 @@ class TeamModelAdapter:
         finally:
             handle.remove()
 
+        source.thumbnail((1600, 1600), Image.Resampling.LANCZOS)
         width, height = source.size
         scale = min(self.input_size / width, self.input_size / height)
         resized_width = max(1, round(width * scale))
@@ -111,5 +133,5 @@ class TeamModelAdapter:
         overlay = np.uint8(np.clip(base * 0.62 + color.astype(np.float32) * 0.38, 0, 255))
         result = Image.fromarray(overlay, mode="RGB")
         buffer = BytesIO()
-        result.save(buffer, format="PNG", optimize=True)
-        return "image/png", buffer.getvalue()
+        result.save(buffer, format="JPEG", quality=90, subsampling=0)
+        return "image/jpeg", buffer.getvalue()

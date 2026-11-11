@@ -1,5 +1,5 @@
 import {demoEnabled,demoTraffic,demoPolicy,demoSamplesRoot} from "./middleware/demo.js";
-import { ImageInputError, ImageGateUnavailableError } from "./services/inference.service.js";
+import { ImageInputError, ImageGateUnavailableError, GradcamTimeoutError } from "./services/inference.service.js";
 import cors from "cors";
 import express from "express";
 import multer from "multer";
@@ -52,6 +52,10 @@ if (existsSync(path.join(env.frontendDist, "index.html"))) {
 }
 app.use((_request, response) => response.status(404).json({ success: false, code: "NOT_FOUND", message: "资源不存在" }));
 app.use((error: unknown, _request: express.Request, response: express.Response, _next: express.NextFunction) => {
+    if (error instanceof GradcamTimeoutError) {
+      response.status(504).json({ success: false, code: error.code, message: error.message });
+      return;
+    }
     if (error instanceof ImageGateUnavailableError) {
       response.status(503).json({ success: false, code: error.code, message: error.message });
       return;

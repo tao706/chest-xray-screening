@@ -52,11 +52,19 @@ export async function requestGradcam(image: {
     const formData = new FormData();
     formData.append("class_id", String(classId));
     formData.append("image", new Blob([new Uint8Array(image.buffer)], { type: image.mimeType }), image.name);
-    const response = await fetch(`${env.inferenceUrl}/internal/gradcam`, {
-        method: "POST",
-        body: formData,
-        signal: AbortSignal.timeout(30000)
-    });
+    let response: Response;
+    try {
+        response = await fetch(`${env.inferenceUrl}/internal/gradcam`, {
+            method: "POST",
+            body: formData,
+            signal: AbortSignal.timeout(120000)
+        });
+    }
+    catch (error) {
+        if (error instanceof Error && error.name === "TimeoutError")
+            throw new GradcamTimeoutError();
+        throw error;
+    }
     if (!response.ok) await handleInferenceFailure(response);
     return response.json() as Promise<{
         success: boolean;
@@ -66,6 +74,12 @@ export async function requestGradcam(image: {
         heatmap_mime_type: string;
         heatmap_base64: string;
     }>;
+}
+export class GradcamTimeoutError extends Error {
+    readonly code = "GRADCAM_TIMEOUT";
+    constructor() {
+        super("关注区域生成超时，请稍后重试或选择其他图片。");
+    }
 }
 
 export class ImageInputError extends Error {

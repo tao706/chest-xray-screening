@@ -1,5 +1,5 @@
 import { requestJson } from "./http";
-import type { ApiResponse, GradcamResult, PredictionResult, StudyListResult } from "@/types/prediction";
+import type { ApiResponse, GradcamResult, Prediction, PredictionResult, StudyListResult } from "@/types/prediction";
 export interface PredictStudyInput {
     subjectId: string;
     studyId: string;
@@ -71,6 +71,10 @@ export async function deleteStudy(studyId: string): Promise<void> {
 }
 export function getStudyImageUrl(studyId: string, imageId: number) {
     return `/api/studies/${encodeURIComponent(studyId)}/images/${imageId}`;
+}
+export async function getImagePredictions(studyId: string, imageId: number): Promise<Prediction[]> {
+    const response = await requestJson<ApiResponse<Prediction[]>>(`/api/studies/${encodeURIComponent(studyId)}/images/${imageId}/predictions`);
+    return response.data.map((item) => ({ ...item, class_id: Number(item.class_id), probability: Number(item.probability) }));
 }
 export async function getGradcam(studyId: string, imageId: number, classId: number) {
     const search = new URLSearchParams({ image_id: String(imageId), class_id: String(classId) });

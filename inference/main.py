@@ -5,6 +5,9 @@ import os
 import base64
 import time
 from contextlib import asynccontextmanager
+from collections import OrderedDict
+from hashlib import sha256
+from threading import Lock
 from typing import Annotated
 
 from fastapi import FastAPI, File, Form, HTTPException, UploadFile
@@ -19,10 +22,28 @@ from model_runtime.types import ImageInput
 
 backend = create_backend(settings)
 slots = InferenceSlots(int(os.getenv("MODEL_CONCURRENCY_LIMIT", "0")))
+validated_images = OrderedDict()
+validation_lock = Lock()
+
+
+def validate_image_content(content: bytes, content_type: str) -> None:
+    key = (sha256(content).digest(), content_type)
+    with validation_lock:
+        if not image_gate.ready:
+            raise ImageGateUnavailable('影像类型校验未就绪，暂不能开始分析。')
+        if key in validated_images:
+            validated_images.move_to_end(key)
+            return
+        validate_chest_input(content, content_type)
+        validate_semantic_chest(content)
+        validated_images[key] = True
+        if len(validated_images) > 256:
+            validated_images.popitem(last=False)
 
 
 @asynccontextmanager
 async def lifespan(_: FastAPI):
+    validated_images.clear()
     await asyncio.to_thread(backend.load)
     await asyncio.to_thread(image_gate.load)
     yield
@@ -60,8 +81,7 @@ async def read_image(image: UploadFile) -> ImageInput:
     if len(content) > settings.max_file_bytes:
         raise HTTPException(status_code=400, detail=f"图片超过{settings.max_file_mb}MB：{image.filename}")
     try:
-        await asyncio.to_thread(validate_chest_input, content, image.content_type)
-        await asyncio.to_thread(validate_semantic_chest, content)
+        await asyncio.to_thread(validate_image_content, content, image.content_type)
     except ImageGateUnavailable as error:
         raise HTTPException(status_code=503, detail={"code": "IMAGE_GATE_UNAVAILABLE", "message": str(error)}) from error
     except ValueError as error:
