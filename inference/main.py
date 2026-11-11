@@ -29,9 +29,9 @@ validation_lock = Lock()
 def validate_image_content(content: bytes, content_type: str) -> None:
     key = (sha256(content).digest(), content_type)
     with validation_lock:
-        if not image_gate.ready:
-            raise ImageGateUnavailable('影像类型校验未就绪，暂不能开始分析。')
         if key in validated_images:
+            if not image_gate.ready:
+                raise ImageGateUnavailable('影像类型校验未就绪，暂不能开始分析。')
             validated_images.move_to_end(key)
             return
         validate_chest_input(content, content_type)
