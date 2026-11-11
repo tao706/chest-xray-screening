@@ -60,7 +60,8 @@
     "deploy/configure.mjs",
     "deploy/Dockerfile.inference",
     "deploy/Dockerfile.web",
-    "deploy/init-demo.mjs"
+    "deploy/init-demo.mjs",
+    "docs/images/analysis-demo.gif"
   ],
   "trees": [
     {
