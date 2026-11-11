@@ -80,16 +80,7 @@ RAG在此指“检索资料后辅助生成回答”的流程：LangChain.js负�
 | 检索增强回答 | LangChain.js编排文档切分和检索，采用本地BM25与TF-IDF，无需向量数据库 |
 | 部署复现 | npm锁文件、Windows CPU Python版本锁、环境检查及白名单发布脚本 |
 
-当前本机验证结果：
-
-- **GitHub 下载复现检查（2026-11-12）通过**：独立克隆、重新安装依赖、下载公开模型、使用新数据库，完成两图上传、逐图评分及浏览器解释图显示验证；环境、耗时与边界见[复现记录](docs/REPRODUCTION_VERIFICATION.md)。
-
-- **30项自动化测试通过**：8项输入准入、5项模型契约、4项下载完整性、5项本地配置、6项演示策略与2项并发保护测试。
-- **独立目录安装与构建通过**：使用锁文件重新安装前后端依赖，完成Vue类型检查、Vite构建和Express TypeScript编译。
-- **上传接口回归通过**：人物照、日常场景照及其灰度版本返回拒绝提示；CI中的两张既有公开胸片样例通过；拒绝输入未生成检查记录。新增肺炎来源样例尚未纳入该回归。这是有限样本回归，不是完整识别率评估。
-- **发布检查通过**：检查实际跟踪路径及源码发布范围，排除真实配置、运行记录和模型权重。
-
-验证步骤见[验证说明](#验证)。首次GitHub Actions云端检查已通过（2026-11-09核对），后续以仓库Actions页面的对应提交状态为准。
+构建和自动化检查命令见[验证](#验证)。
 
 ## 快速开始
 
@@ -169,9 +160,6 @@ npm run test:acceptance
 
 模型自检默认使用随附公开胸片；接口验收需已运行的服务、数据库、配置账号与本地验收数据，并会创建专用测试记录。
 
-- [隔离安装验证](docs/INSTALL_VERIFICATION.md)
-- [接口验收报告](docs/ACCEPTANCE_REPORT.md)
-- [发布准备状态](docs/OPEN_SOURCE_READINESS.md)
 
 ## 模型和结果含义
 
@@ -208,7 +196,7 @@ datasets/   本地数据集入口，不进入公开仓库
 
 ## 持续集成
 
-GitHub Actions覆盖Windows上的Node.js 22/24构建、Python 3.12依赖与模型契约、发布路径检查。首次远程运行已通过，后续状态见仓库Actions页面，工作流说明见[CI说明](docs/CI.md)。
+GitHub Actions覆盖Windows上的Node.js 22/24构建、Python 3.12依赖与模型契约、发布路径检查。运行状态见仓库Actions页面，工作流说明见[CI说明](docs/CI.md)。
 
 ## 许可
 
@@ -217,5 +205,3 @@ GitHub Actions覆盖Windows上的Node.js 22/24构建、Python 3.12依赖与模�
 ## 文档导航
 
 [架构](docs/ARCHITECTURE.md) · [功能演示](docs/FEATURE_WALKTHROUGH.md) · [安装](docs/INSTALL_WINDOWS.md) · [接口](docs/API_CONTRACT.md) · [模型](docs/MODEL_CARD.md) · [文档索引](docs/README.md)
-
-准备公开时按[发布候选检查](docs/PUBLICATION_CHECKLIST.md)生成白名单源码集合。

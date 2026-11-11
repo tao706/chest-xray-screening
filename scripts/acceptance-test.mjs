@@ -1,4 +1,4 @@
-import { readFile, writeFile } from "node:fs/promises";
+import { readFile, writeFile, mkdir } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 const scriptDirectory = path.dirname(fileURLToPath(import.meta.url));
@@ -98,7 +98,8 @@ async function writeReport(error) {
     const failed = results.filter((item) => item.status === "FAIL").length;
     const rows = results.map((item) => `| ${item.status === "PASS" ? "通过" : "失败"} | ${item.name} | ${item.durationMs} ms | ${String(item.detail).replaceAll("|", "\\|")} |`).join("\n");
     const report = `# 全系统验收报告\n\n- 验收时间：${new Date().toLocaleString("zh-CN", { hour12: false })}\n- 服务地址：${baseUrl}\n- 结果：${error ? "失败" : "通过"}\n- 通过：${passed}\n- 失败：${failed}\n- 批量任务ID：${taskId || "未创建"}\n\n| 状态 | 检查项 | 用时 | 说明 |\n|---|---|---:|---|\n${rows}\n\n> 报告不包含账号密码、Cookie或数据库密钥。\n`;
-    await writeFile(path.join(projectRoot, "docs", "ACCEPTANCE_REPORT.md"), report, "utf8");
+    await mkdir(path.join(projectRoot, ".runtime"), { recursive: true });
+    await writeFile(path.join(projectRoot, ".runtime", "acceptance-report.md"), report, "utf8");
 }
 let failure;
 try {
@@ -239,7 +240,7 @@ finally {
 for (const result of results) {
     console.log(`[${result.status}] ${result.name} (${result.durationMs} ms) - ${result.detail}`);
 }
-console.log(`Report: ${path.join(projectRoot, "docs", "ACCEPTANCE_REPORT.md")}`);
+console.log(`Report: ${path.join(projectRoot, ".runtime", "acceptance-report.md")}`);
 if (failure) {
     console.error(failure instanceof Error ? failure.message : failure);
     process.exit(1);

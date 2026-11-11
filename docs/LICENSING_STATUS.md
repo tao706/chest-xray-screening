@@ -19,7 +19,7 @@
 
 ## 已发现的后续部署问题
 
-Pinia依赖声明和锁文件已同步，独立目录npm ci及构建已验证。部署整改及验证范围见INSTALL_WINDOWS.md和INSTALL_VERIFICATION.md。
+Pinia依赖声明和锁文件已同步，独立目录npm ci及构建已验证。安装与运行说明见INSTALL_WINDOWS.md。
 
 ## 许可证决定后
 

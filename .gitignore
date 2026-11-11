@@ -34,3 +34,5 @@ Thumbs.db
 inference/.venv312/
 
 deploy/.env
+
+RELEASE_MANIFEST.json
