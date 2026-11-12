@@ -123,7 +123,19 @@ npm run quickstart
 ![临床信息、审阅草稿与智能助手连续问答演示](docs/images/assistant-demo.gif)
 
 <details>
-<summary>更多界面：运行总览、分析结果、影像操作与审阅草稿</summary>
+<summary>更多功能截图：批量分析、任务管理、结果导出与其他界面</summary>
+
+**批量分析**：扫描数据集、创建任务，查看处理进度及完成、失败数量。
+
+![批量分析任务创建、扫描结果与完成进度](docs/images/batch-analysis.png)
+
+**任务管理**：最近任务列表提供单条删除和全选删除入口；进行中的任务不可删除。
+
+![最近任务列表、单条删除和批量删除入口](docs/images/batch-task-management.png)
+
+**结果导出**：生成CSV并检查字段、评分范围、重复项与检查覆盖情况，校验通过后下载文件。
+
+![结果导出校验报告与CSV下载](docs/images/result-export.png)
 
 **运行总览**：检查统计、最近记录与服务状态。
 

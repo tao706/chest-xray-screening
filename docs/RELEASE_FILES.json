@@ -62,7 +62,10 @@
     "deploy/Dockerfile.web",
     "deploy/init-demo.mjs",
     "docs/images/analysis-demo.gif",
-    "docs/images/assistant-demo.gif"
+    "docs/images/assistant-demo.gif",
+    "docs/images/batch-analysis.png",
+    "docs/images/batch-task-management.png",
+    "docs/images/result-export.png"
   ],
   "trees": [
     {
