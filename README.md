@@ -118,7 +118,9 @@ npm run quickstart
 
 关联检查记录和临床选项，检索本地资料并展示引用来源；支持多轮提问、回答分段显示，以及可编辑、可保存的医生审阅草稿。
 
-![检查关联与智能助手对话](docs/images/assistant.png)
+演示从已填写的临床信息生成审阅草稿，再通过快捷提问查看分段回答并继续追问，约17秒。录制展示草稿生成与对话交互，未展示引用来源展开过程。
+
+![临床信息、审阅草稿与智能助手连续问答演示](docs/images/assistant-demo.gif)
 
 <details>
 <summary>更多界面：运行总览、分析结果、影像操作与审阅草稿</summary>
@@ -138,6 +140,10 @@ npm run quickstart
 **审阅草稿**：整理模型提示、重点复核、信息缺口及下一步核对内容。
 
 ![医生审阅草稿](docs/images/review-draft.png)
+
+**检查关联与对话**：查询患者检查并结合临床选项辅助提问。
+
+![检查关联与智能助手对话](docs/images/assistant.png)
 
 </details>
 
